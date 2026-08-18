@@ -1,0 +1,418 @@
+/* Taavetin vedet — styles
+   Tokens pulled from the Figma design system (wE3DtQQEPyWUZUgb9RNvnZ). */
+
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f9f9f9;
+  --color-surface-alert: #fff6d0;
+  --color-border: #cac9c5;
+  --color-border-line: #e0e0dd;
+  --color-border-alert: #ffd415;
+  --color-text-primary: #194a63;
+  --color-text-link: #256e92;
+  --color-text-heading: #101828;
+  --color-overlay: rgba(0, 0, 0, 0.85);
+
+  --radius-sm: 8px;
+  --radius-full: 999px;
+
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+
+  --font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* App bar */
+
+.app-bar {
+  position: relative;
+  height: 64px;
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--color-border-line);
+  background: var(--color-bg);
+}
+
+.app-bar__title {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 56px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--color-text-primary);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon-btn {
+  position: absolute;
+  top: 10px;
+  left: 4px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  background: var(--color-surface);
+}
+
+.icon-btn[hidden] {
+  display: none;
+}
+
+/* Views */
+
+main {
+  flex: 1 1 auto;
+  padding: var(--space-16);
+}
+
+main[hidden] {
+  display: none;
+}
+
+/* Home page — process list */
+
+#home-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-bottom: var(--space-24);
+}
+
+#home-view[hidden] {
+  display: none;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.card-project {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 60px; /* Figma Card/Project height */
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-16);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+.card-project .icon {
+  flex: 0 0 auto;
+  color: var(--color-text-primary);
+}
+
+.contact-box {
+  display: flex;
+  gap: var(--space-8);
+  margin-top: auto;
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--color-border-line);
+}
+
+.contact-box .icon {
+  flex: 0 0 auto;
+  color: var(--color-text-link);
+}
+
+.contact-box__title {
+  margin: 0 0 var(--space-4);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--color-text-primary);
+}
+
+.contact-box__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-primary);
+}
+
+/* Project page */
+
+#project-view {
+  /* Extra breathing room so the last task card doesn't sit on the screen edge. */
+  padding-bottom: var(--space-40);
+}
+
+.page-description {
+  /* 24px below = the space above "Tarvittavat työkalut", matching the phase gap. Was var(--space-8). */
+  margin: 0 0 var(--space-24);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.page-tools {
+  margin: 0 0 var(--space-16);
+}
+
+.page-tools__label {
+  margin: 0 0 var(--space-4);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600; /* hierarchy trial 2026-07 — to revert, remove this line (was 400/normal) */
+  color: var(--color-text-link);
+}
+
+.page-tools__row {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-primary);
+}
+
+.step-group {
+  margin-bottom: var(--space-16);
+}
+
+.step-group__header {
+  padding-top: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+
+.step-group__label {
+  margin: 0 0 var(--space-4);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600; /* hierarchy trial 2026-07 — to revert, remove this line (was 400/normal) */
+  color: var(--color-text-link);
+}
+
+.step-group__name {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--color-text-heading);
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Task card */
+
+.card-task {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.card-task.is-expanded {
+  background: var(--color-bg);
+}
+
+.card-task__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-8) var(--space-16);
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 16px; /* hierarchy trial 2026-07 — was 18px; revert to 18px to restore */
+  line-height: 24px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Task card title row is always 58px (+ the card's 1px top/bottom border = 60px,
+   the Figma Card/Task minimised height). Applied in BOTH states and vertically
+   centered so the title sits at the same spot whether the card is open or closed —
+   it must not shift up when the card expands. */
+.card-task__header {
+  min-height: 58px;
+}
+
+.card-task__header .icon {
+  flex: 0 0 auto;
+  color: var(--color-text-primary);
+}
+
+.card-task__body {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-16);
+  /* No top padding: the 58px centered header already leaves the title→body gap. */
+  padding: 0 var(--space-16) var(--space-16);
+}
+
+.card-task.is-expanded .card-task__body {
+  display: flex;
+}
+
+.card-task__section-label {
+  margin: 0 0 var(--space-4);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-link);
+}
+
+.card-task__section-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-primary);
+  white-space: pre-line;
+}
+
+/* Attachments */
+
+.attachments-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.attachment-thumb {
+  width: 78px;
+  height: 78px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  object-fit: cover;
+  cursor: pointer;
+  background: var(--color-surface);
+  padding: 0;
+}
+
+.attachment-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius-sm) - 1px);
+  display: block;
+}
+
+/* Alert / Huomio */
+
+.alert-box {
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-16);
+  background: var(--color-surface-alert);
+  border: 1px solid var(--color-border-alert);
+  border-radius: var(--radius-sm);
+}
+
+.alert-box .icon {
+  flex: 0 0 auto;
+  color: var(--color-text-primary);
+}
+
+.alert-box__title {
+  margin: 0 0 var(--space-4);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.alert-box__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Lightbox */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-overlay);
+  z-index: 100;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
