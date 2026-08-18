@@ -6,10 +6,21 @@ A self-contained interactive web page presenting the "Taavetin vedet" process.
 
 https://heidicode.github.io/Taavetin-vedet/
 
+## Themes
+
+The page ships with a CSS Zen Garden–style theme switcher: the same HTML is
+restyled by swapping one stylesheet. Pick a theme from the switcher at the
+bottom of the screen; the choice is remembered (localStorage).
+
+- **Alkuperäinen** — the original soft look (`themes/original.css`)
+- **Neobrutalismi** — raw borders, hard offset shadows, monospace type
+  (`themes/neo-brutalist.css`)
+
 ## Structure
 
-- `index.html` — the full standalone page (markup + inline JS)
-- `style.css` — styles
+- `index.html` — the full standalone page (markup + inline JS + theme switcher)
+- `themes/original.css` — original theme
+- `themes/neo-brutalist.css` — Neo-Brutalist theme
 
 No build step and no dependencies: open `index.html` in a browser to run it locally.
 

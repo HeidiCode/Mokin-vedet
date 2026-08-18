@@ -4,7 +4,61 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Taavetin vedet</title>
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Swappable theme stylesheet — the theme switcher rewrites this href. -->
+<link rel="stylesheet" id="theme-stylesheet" href="themes/original.css">
+
+<!-- Theme switcher — its own styles, independent of either theme, so the
+     control looks the same whichever stylesheet is loaded. -->
+<style>
+  #app { padding-bottom: 96px !important; } /* clearance for the fixed switcher */
+
+  .theme-switch {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #1a1a1a;
+    border: 2px solid #000;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    max-width: calc(100vw - 24px);
+  }
+  .theme-switch__label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9a9a9a;
+    padding-left: 2px;
+  }
+  .theme-switch__btn {
+    appearance: none;
+    border: 1px solid #444;
+    background: transparent;
+    color: #e8e8e8;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .theme-switch__btn:hover { border-color: #888; }
+  .theme-switch__btn.is-active {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+  }
+</style>
 </head>
 <body>
 <div id="app">
@@ -35,6 +89,40 @@
   <button class="lightbox-close" id="lightbox-close" aria-label="Sulje"></button>
   <img id="lightbox-img" src="" alt="">
 </div>
+
+<!-- Theme switcher (CSS Zen Garden style: same markup, swappable stylesheet) -->
+<div class="theme-switch" role="group" aria-label="Vaihda teemaa">
+  <span class="theme-switch__label">Teema</span>
+  <button type="button" class="theme-switch__btn" data-theme="original">Alkuperäinen</button>
+  <button type="button" class="theme-switch__btn" data-theme="neo-brutalist">Neobrutalismi</button>
+</div>
+
+<script>
+/* ---------- Theme switcher ---------- */
+(function () {
+  var THEMES = { original: "themes/original.css", "neo-brutalist": "themes/neo-brutalist.css" };
+  var STORAGE_KEY = "tv-theme";
+  var link = document.getElementById("theme-stylesheet");
+  var buttons = document.querySelectorAll(".theme-switch__btn");
+
+  function apply(theme) {
+    if (!THEMES[theme]) theme = "original";
+    link.href = THEMES[theme];
+    try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+    buttons.forEach(function (b) {
+      b.classList.toggle("is-active", b.dataset.theme === theme);
+    });
+  }
+
+  var saved;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  apply(saved || "original");
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () { apply(b.dataset.theme); });
+  });
+})();
+</script>
 
 <script>
 /* ---------- Icons ---------- */
