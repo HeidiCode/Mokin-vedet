@@ -47,18 +47,22 @@ You advance one step at a time with *Merkitse valmiiksi* (`stepBy(+1)`); to go b
 tap any done step to rewind to it (`setDoneAndRender`). Marking the **last** step done
 opens the completion modal (`#complete-modal`, "Kaikki vaiheet valmiit" + a check
 button); closing it (`closeCompleteModal`) **resets the process to 0**. Home cards
-show each process's `done/total`. Structure is shared HTML/JS in `index.html`; each
-theme styles it (`.progress*`, `.task-badge`, `.card-task__tag`,
-`.card-task__head/__body`, `.step-actions`, `.btn-complete`, `.modal*`,
-`.is-done`/`.is-current`/`.is-locked`). There is **no manual accordion** — body
-visibility follows status.
+show each process's `done/total`. The progress bar is **sticky** (`position: sticky;
+top: 0`) with a full-bleed page-colored background, so it stays pinned as the step
+list scrolls. Structure is shared HTML/JS in `index.html`; each theme styles it
+(`.progress*`, `.task-badge`, `.card-task__tag`, `.card-task__head/__body`,
+`.step-actions`, `.btn-complete`, `.modal*`, `.is-done`/`.is-current`/`.is-locked`).
+There is **no manual accordion** — body visibility follows status.
 
 ## Themes (CSS Zen Garden model)
 
 Same HTML, swappable stylesheet. The fixed switcher at the bottom rewrites the
 `href` of `#theme-stylesheet`; the choice is saved in `localStorage` under
 `tv-theme`. To add a theme: add a `themes/<name>.css`, register it in the
-`THEMES` map and add a switcher button.
+`THEMES` map and add a switcher button. The switcher's **own** styling lives in a
+`<style>` block in `index.html`'s `<head>` (a soft light "segmented pill",
+deliberately theme-independent so it looks the same under either stylesheet) — not
+in the theme CSS files.
 
 ## Changing photos
 

@@ -1,10 +1,27 @@
 # Mökin vedet
 
-A self-contained interactive web page presenting the "Mökin vedet" process.
+A self-contained web app: a step-by-step guide for opening and closing a
+cottage's water system across the seasons (summer arrive/leave, spring opening,
+autumn closing, winter on/off).
 
 ## Live demo
 
 https://heidicode.github.io/Mokin-vedet/
+
+## Using it
+
+Pick a season/task from the home list, then work through it one step at a time:
+
+- The **current** step is expanded with its instructions, tools, photos, and any
+  warnings; earlier steps collapse to "done" and later steps stay locked, so you
+  always see exactly what to do next.
+- Tap **Merkitse valmiiksi** to complete the current step and advance. To go back,
+  tap any completed step to return to it.
+- A **sticky progress bar** at the top shows how many steps are done, and each home
+  card shows its `done/total`.
+- Progress is **per session only** — it isn't saved. Finishing the list (a "Kaikki
+  vaiheet valmiit" confirmation appears on the last step) or reloading starts it
+  fresh.
 
 ## Themes
 
