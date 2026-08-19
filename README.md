@@ -1,10 +1,10 @@
-# Taavetin vedet
+# Mökin vedet
 
-A self-contained interactive web page presenting the "Taavetin vedet" process.
+A self-contained interactive web page presenting the "Mökin vedet" process.
 
 ## Live demo
 
-https://heidicode.github.io/Taavetin-vedet/
+https://heidicode.github.io/Mokin-vedet/
 
 ## Themes
 
