@@ -311,7 +311,6 @@ button.card-task__head {
 .card-task.is-current .task-badge {
   border-color: var(--color-text-link);
   color: var(--color-text-link);
-  box-shadow: inset 0 0 0 1px var(--color-text-link);
 }
 
 .card-task.is-done .task-badge {
