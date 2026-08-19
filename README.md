@@ -12,7 +12,7 @@ The page ships with a CSS Zen Garden–style theme switcher: the same HTML is
 restyled by swapping one stylesheet. Pick a theme from the switcher at the
 bottom of the screen; the choice is remembered (localStorage).
 
-- **Alkuperäinen** — the original soft look (`themes/original.css`)
+- **Minimalismi** — the original soft look (`themes/original.css`)
 - **Neobrutalismi** — raw borders, hard offset shadows, monospace type
   (`themes/neo-brutalist.css`)
 

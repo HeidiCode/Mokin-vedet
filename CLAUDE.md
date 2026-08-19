@@ -12,7 +12,7 @@ no build step.
 | Path | What it is |
 |---|---|
 | `index.html` | The whole app: static markup + inline JS (data, renderer, theme switcher) |
-| `themes/original.css` | "Alkuperäinen" theme — soft, Manrope, teal |
+| `themes/original.css` | "Minimalismi" theme — soft, Manrope, teal |
 | `themes/neo-brutalist.css` | "Neobrutalismi" theme — yellow ground, black borders, hard shadows, JetBrains Mono |
 | `images/*.jpg` | Optimized task photos (committed) |
 | `images/*.png` | Original full-size photos — kept locally, **gitignored** |
