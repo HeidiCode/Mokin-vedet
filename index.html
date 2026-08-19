@@ -79,6 +79,10 @@
   </main>
 
   <main id="project-view" hidden>
+    <div class="progress" id="progress">
+      <span class="progress__count" id="progress-count">0/0</span>
+      <div class="progress__track"><div class="progress__fill" id="progress-fill"></div></div>
+    </div>
     <p class="page-description" id="project-description"></p>
     <div class="page-tools" id="project-tools"></div>
     <div id="step-groups"></div>
@@ -88,6 +92,13 @@
 <div class="lightbox" id="lightbox" hidden>
   <button class="lightbox-close" id="lightbox-close" aria-label="Sulje"></button>
   <img id="lightbox-img" src="" alt="">
+</div>
+
+<div class="modal" id="complete-modal" hidden>
+  <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="complete-modal-text">
+    <p class="modal__text" id="complete-modal-text">Kaikki vaiheet valmiit</p>
+    <button class="modal__btn" id="complete-close" type="button" aria-label="Sulje"></button>
+  </div>
 </div>
 
 <!-- Theme switcher (CSS Zen Garden style: same markup, swappable stylesheet) -->
@@ -138,7 +149,8 @@ const icons = {
   arrowLeft: '<svg class="icon" width="20" height="20" viewBox="9 9 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6544 20.7352C12.2314 21.1582 12.2314 21.8452 12.6544 22.2682L18.069 27.6827C18.492 28.1058 19.179 28.1058 19.602 27.6827C20.025 27.2597 20.025 26.5728 19.602 26.1497L16.0351 22.5829H28.58C29.1789 22.5829 29.6629 22.099 29.6629 21.5C29.6629 20.901 29.1789 20.4171 28.58 20.4171H16.0351L19.602 16.8503C20.025 16.4272 20.025 15.7403 19.602 15.3173C19.179 14.8942 18.492 14.8942 18.069 15.3173L12.6544 20.7318V20.7352Z" fill="currentColor"/></svg>',
   chevronRight: '<svg class="icon" width="20" height="20" viewBox="9 9 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5816 20.0587C26.1395 20.5793 26.1395 21.4248 25.5816 21.9455L18.4403 28.6095C17.8824 29.1302 16.9763 29.1302 16.4184 28.6095C15.8605 28.0889 15.8605 27.2434 16.4184 26.7228L22.551 21L16.4229 15.2772C15.865 14.7566 15.865 13.9111 16.4229 13.3905C16.9808 12.8698 17.8869 12.8698 18.4448 13.3905L25.586 20.0545L25.5816 20.0587Z" fill="currentColor"/></svg>',
   close: '<svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.99258 3.34531C4.53703 2.88976 3.79721 2.88976 3.34166 3.34531C2.88611 3.80086 2.88611 4.54067 3.34166 4.99622L8.34908 10L3.34531 15.0074C2.88976 15.463 2.88976 16.2028 3.34531 16.6583C3.80086 17.1139 4.54067 17.1139 4.99623 16.6583L10 11.6509L15.0074 16.6547C15.463 17.1102 16.2028 17.1102 16.6583 16.6547C17.1139 16.1991 17.1139 15.4593 16.6583 15.0038L11.6509 10L16.6547 4.99258C17.1102 4.53703 17.1102 3.79721 16.6547 3.34166C16.1991 2.88611 15.4593 2.88611 15.0038 3.34166L10 8.34908L4.99258 3.34531Z" fill="currentColor"/></svg>',
-  warning: '<svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0006 3C10.46 3 10.8818 3.25313 11.1006 3.65625L17.8506 16.1562C18.06 16.5437 18.0506 17.0125 17.8256 17.3906C17.6006 17.7688 17.1912 18 16.7506 18H3.25058C2.80996 18 2.40058 17.7688 2.17558 17.3906C1.95058 17.0125 1.94121 16.5437 2.15058 16.1562L8.90058 3.65625C9.11933 3.25313 9.54121 3 10.0006 3ZM10.0006 14C9.73537 14 9.48101 14.1054 9.29348 14.2929C9.10594 14.4804 9.00058 14.7348 9.00058 15C9.00058 15.2652 9.10594 15.5196 9.29348 15.7071C9.48101 15.8946 9.73537 16 10.0006 16C10.2658 16 10.5202 15.8946 10.7077 15.7071C10.8952 15.5196 11.0006 15.2652 11.0006 15C11.0006 14.7348 10.8952 14.4804 10.7077 14.2929C10.5202 14.1054 10.2658 14 10.0006 14ZM10.0006 8C9.43183 8 8.97871 8.48438 9.01933 9.05312L9.25058 12.3031C9.27871 12.6938 9.60683 13 9.99746 13C10.3912 13 10.7162 12.6969 10.7443 12.3031L10.9756 9.05312C11.0162 8.48438 10.5662 8 9.99433 8H10.0006Z" fill="currentColor"/></svg>'
+  warning: '<svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0006 3C10.46 3 10.8818 3.25313 11.1006 3.65625L17.8506 16.1562C18.06 16.5437 18.0506 17.0125 17.8256 17.3906C17.6006 17.7688 17.1912 18 16.7506 18H3.25058C2.80996 18 2.40058 17.7688 2.17558 17.3906C1.95058 17.0125 1.94121 16.5437 2.15058 16.1562L8.90058 3.65625C9.11933 3.25313 9.54121 3 10.0006 3ZM10.0006 14C9.73537 14 9.48101 14.1054 9.29348 14.2929C9.10594 14.4804 9.00058 14.7348 9.00058 15C9.00058 15.2652 9.10594 15.5196 9.29348 15.7071C9.48101 15.8946 9.73537 16 10.0006 16C10.2658 16 10.5202 15.8946 10.7077 15.7071C10.8952 15.5196 11.0006 15.2652 11.0006 15C11.0006 14.7348 10.8952 14.4804 10.7077 14.2929C10.5202 14.1054 10.2658 14 10.0006 14ZM10.0006 8C9.43183 8 8.97871 8.48438 9.01933 9.05312L9.25058 12.3031C9.27871 12.6938 9.60683 13 9.99746 13C10.3912 13 10.7162 12.6969 10.7443 12.3031L10.9756 9.05312C11.0162 8.48438 10.5662 8 9.99433 8H10.0006Z" fill="currentColor"/></svg>',
+  check: '<svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.704 5.29a1 1 0 0 1 0 1.415l-7.5 7.5a1 1 0 0 1-1.415 0l-3.5-3.5a1 1 0 1 1 1.415-1.414l2.792 2.793 6.793-6.793a1 1 0 0 1 1.415 0z" fill="currentColor"/></svg>'
 };
 
 /* ---------- Photos ----------
@@ -449,27 +461,70 @@ const stepGroups = document.getElementById("step-groups");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxClose = document.getElementById("lightbox-close");
+const progress = document.getElementById("progress");
+const progressCount = document.getElementById("progress-count");
+const progressFill = document.getElementById("progress-fill");
+const completeModal = document.getElementById("complete-modal");
+const completeClose = document.getElementById("complete-close");
 
 backBtn.innerHTML = icons.arrowLeft;
 lightboxClose.innerHTML = icons.close;
+completeClose.innerHTML = icons.check;
 
-function renderHome() {
-  processList.innerHTML = Object.entries(processes).map(([id, process]) => `
-    <button class="card-project" data-process="${id}">
-      <span>${process.title}</span>
-      ${icons.chevronRight}
-    </button>
-  `).join("");
+/* ---------- Progress (linear step flow) ----------
+   Following the Neo-Brutalist design system: a process is a linear sequence.
+   State is a single "steps completed" count per process, held only in memory
+   (`progressState`) — it is intentionally NOT persisted, so it resets whenever the
+   app is closed or reloaded; there is no manual reset. From the count each step
+   derives a status: index < done → done, index === done → current, index > done →
+   locked. You advance one step at a time with "Merkitse valmiiksi". */
+
+const progressState = {}; // { [processId]: <doneCount> } — in-memory, cleared on reload
+let currentProcessId = null;
+
+function processTotal(process) {
+  return process.groups.reduce((sum, g) => sum + g.tasks.length, 0);
+}
+/* Completed-step count for a process, clamped to a valid range. */
+function getDone(id, process) {
+  const raw = progressState[id];
+  const total = process ? processTotal(process) : Infinity;
+  if (typeof raw !== "number" || raw < 0) return 0;
+  return Math.min(raw, total);
+}
+function setDone(id, n) {
+  if (n > 0) progressState[id] = n; else delete progressState[id];
 }
 
-function renderTask(task) {
+function renderHome() {
+  processList.innerHTML = Object.entries(processes).map(([id, process]) => {
+    const total = processTotal(process);
+    const done = getDone(id, process);
+    const complete = total > 0 && done === total;
+    return `
+    <button class="card-project" data-process="${id}">
+      <span class="card-project__title">${process.title}</span>
+      <span class="card-project__count${complete ? " is-complete" : ""}">${done}/${total}</span>
+      ${icons.chevronRight}
+    </button>
+  `;
+  }).join("");
+}
+
+/* One step card. `status` is "done" | "current" | "locked".
+   Done + current show their body; locked shows only the title row (dimmed).
+   The current step carries the flow controls (back + mark complete). */
+function renderTask(task, num, total, status) {
   const hasPhotos = task.photos && task.photos.length > 0;
-  return `
-    <div class="card-task">
-      <button class="card-task__header">
-        <span>${task.title}</span>
-        ${icons.chevronDown}
-      </button>
+  const showBody = status === "done" || status === "current";
+  const tag = status === "done" ? "Valmis" : status === "current" ? "Kesken" : "Lukittu";
+  const rewindable = status === "done";
+  const headTag = rewindable ? "button" : "div";
+  const headAttrs = rewindable
+    ? ` type="button" data-rewind="${num}" title="Palaa tähän vaiheeseen"`
+    : "";
+
+  const body = showBody ? `
       <div class="card-task__body">
         ${task.detail ? `
           <div>
@@ -506,13 +561,34 @@ function renderTask(task) {
             </div>
           </div>
         ` : ""}
-      </div>
+        ${status === "current" ? `
+          <div class="step-actions">
+            <button type="button" class="btn-complete" data-complete>Merkitse valmiiksi ✓</button>
+          </div>
+        ` : ""}
+      </div>` : "";
+
+  return `
+    <div class="card-task is-${status}" data-step="${num}">
+      <${headTag} class="card-task__head"${headAttrs}>
+        <span class="task-badge">
+          <span class="task-badge__num">${num}</span>
+          ${icons.check}
+        </span>
+        <span class="card-task__titlerow">
+          <span class="card-task__title">${task.title}</span>
+          <span class="card-task__tag">${tag}</span>
+        </span>
+      </${headTag}>
+      ${body}
     </div>
   `;
 }
 
 function renderProject(id) {
   const process = processes[id];
+  const total = processTotal(process);
+  const done = getDone(id, process);
   projectDescription.textContent = process.description;
   const hasTools = process.tools && process.tools.length > 0;
   projectTools.innerHTML = hasTools ? `
@@ -521,6 +597,7 @@ function renderProject(id) {
   ` : "";
   projectTools.hidden = !hasTools;
 
+  let num = 0;
   stepGroups.innerHTML = process.groups.map(group => `
     <div class="step-group">
       <div class="step-group__header">
@@ -528,13 +605,65 @@ function renderProject(id) {
         ${group.name ? `<p class="step-group__name">${group.name}</p>` : ""}
       </div>
       <div class="task-list">
-        ${group.tasks.map(renderTask).join("")}
+        ${group.tasks.map(task => {
+          num++;
+          const status = num - 1 < done ? "done" : (num - 1 === done ? "current" : "locked");
+          return renderTask(task, num, total, status);
+        }).join("")}
       </div>
     </div>
   `).join("");
+
+  progressCount.textContent = done + "/" + total;
+  progressFill.style.width = total ? (done / total * 100) + "%" : "0%";
+  progress.classList.toggle("is-complete", total > 0 && done === total);
+}
+
+/* Move the completed-step count by delta (advance or step back) and re-render,
+   keeping the (new) current step in view. */
+function stepBy(delta) {
+  if (!currentProcessId) return;
+  const process = processes[currentProcessId];
+  const total = processTotal(process);
+  const next = Math.min(Math.max(getDone(currentProcessId, process) + delta, 0), total);
+  setDone(currentProcessId, next);
+  renderProject(currentProcessId);
+  if (delta > 0 && total > 0 && next === total) {
+    openCompleteModal();
+  } else {
+    scrollToCurrent();
+  }
+}
+
+/* Completion modal — shown when the final step is marked done. Closing it resets
+   the process back to the start (progress is a one-shot run, not a saved record). */
+function openCompleteModal() {
+  completeModal.hidden = false;
+}
+function closeCompleteModal() {
+  completeModal.hidden = true;
+  if (currentProcessId) {
+    setDone(currentProcessId, 0);
+    renderProject(currentProcessId);
+    projectView.scrollTop = 0;
+    window.scrollTo(0, 0);
+  }
+}
+function setDoneAndRender(n) {
+  if (!currentProcessId) return;
+  const total = processTotal(processes[currentProcessId]);
+  setDone(currentProcessId, Math.min(Math.max(n, 0), total));
+  renderProject(currentProcessId);
+  scrollToCurrent();
+}
+function scrollToCurrent() {
+  const cur = stepGroups.querySelector(".card-task.is-current");
+  if (cur) cur.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function showHome() {
+  currentProcessId = null;
+  renderHome(); // refresh the per-process done/total counts
   homeView.hidden = false;
   projectView.hidden = true;
   backBtn.hidden = true;
@@ -542,6 +671,7 @@ function showHome() {
 }
 
 function showProject(id) {
+  currentProcessId = id;
   renderProject(id);
   homeView.hidden = true;
   projectView.hidden = false;
@@ -571,13 +701,9 @@ processList.addEventListener("click", (e) => {
 backBtn.addEventListener("click", showHome);
 
 stepGroups.addEventListener("click", (e) => {
-  const header = e.target.closest(".card-task__header");
-  if (header) {
-    const card = header.closest(".card-task");
-    const expanded = card.classList.toggle("is-expanded");
-    header.querySelector(".icon").outerHTML = expanded ? icons.chevronUp : icons.chevronDown;
-    return;
-  }
+  if (e.target.closest("[data-complete]")) { stepBy(1); return; }
+  const rewind = e.target.closest("[data-rewind]");
+  if (rewind) { setDoneAndRender(Number(rewind.dataset.rewind) - 1); return; }
   const thumb = e.target.closest(".attachment-thumb");
   if (thumb) openLightbox(thumb.dataset.photo);
 });
@@ -586,8 +712,16 @@ lightboxClose.addEventListener("click", closeLightbox);
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
 });
+
+completeClose.addEventListener("click", closeCompleteModal);
+completeModal.addEventListener("click", (e) => {
+  if (e.target === completeModal) closeCompleteModal();
+});
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+  if (e.key !== "Escape") return;
+  if (!completeModal.hidden) closeCompleteModal();
+  else if (!lightbox.hidden) closeLightbox();
 });
 
 renderHome();

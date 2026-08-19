@@ -29,6 +29,30 @@ no build step.
 - The renderer resolves each ref with `PHOTOS[ref] || ref` (so a raw path or URL
   also works) and flattens arrays into the thumbnail grid + fullscreen lightbox.
 
+## Step flow / progress
+
+A process is a **linear sequence** (per the Neo-Brutalist design system). State is
+a single "steps completed" count per process, held **in memory only**
+(`progressState`, `{ [processId]: <doneCount> }`) — intentionally not persisted, so
+it clears whenever the app is closed/reloaded; there is no manual reset. Each step's
+status is derived from its global position `num` (1-based, across groups) vs `done`:
+
+- `num-1 < done` → **done** (filled badge + check + `[Valmis]`, body shown; tap the
+  head to rewind to that step)
+- `num-1 === done` → **current** (accent badge + `[Kesken]`, body shown, carries the
+  full-width **Merkitse valmiiksi** button)
+- `num-1 > done` → **locked** (dimmed badge + `[Lukittu]`, **title only, no body**)
+
+You advance one step at a time with *Merkitse valmiiksi* (`stepBy(+1)`); to go back,
+tap any done step to rewind to it (`setDoneAndRender`). Marking the **last** step done
+opens the completion modal (`#complete-modal`, "Kaikki vaiheet valmiit" + a check
+button); closing it (`closeCompleteModal`) **resets the process to 0**. Home cards
+show each process's `done/total`. Structure is shared HTML/JS in `index.html`; each
+theme styles it (`.progress*`, `.task-badge`, `.card-task__tag`,
+`.card-task__head/__body`, `.step-actions`, `.btn-complete`, `.modal*`,
+`.is-done`/`.is-current`/`.is-locked`). There is **no manual accordion** — body
+visibility follows status.
+
 ## Themes (CSS Zen Garden model)
 
 Same HTML, swappable stylesheet. The fixed switcher at the bottom rewrites the

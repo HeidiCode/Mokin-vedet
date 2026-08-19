@@ -303,7 +303,7 @@ main[hidden] {
   gap: var(--space-16);
 }
 
-/* Task card */
+/* Task card — linear step flow (done / current / locked) */
 
 .card-task {
   border: var(--border-card) solid var(--color-border);
@@ -313,47 +313,108 @@ main[hidden] {
   overflow: hidden;
 }
 
-.card-task.is-expanded {
-  background: var(--color-surface);
+/* Locked (future) steps: title only, dimmed. */
+.card-task.is-locked {
+  opacity: 0.5;
+  box-shadow: none;
 }
 
-.card-task__header {
+/* Head = number badge + title row. A `button` on done steps (tap to rewind). */
+.card-task__head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: var(--space-12);
+  align-items: flex-start;
   width: 100%;
-  padding: var(--space-8) var(--space-16);
+  padding: var(--space-16);
   background: transparent;
   border: none;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+button.card-task__head {
+  cursor: pointer;
+}
+
+.task-badge {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-thin) solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.task-badge .check-icon {
+  display: none;
+}
+
+.card-task.is-current .task-badge {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.card-task.is-done .task-badge {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.card-task.is-done .task-badge__num {
+  display: none;
+}
+
+.card-task.is-done .task-badge .check-icon {
+  display: block;
+}
+
+.card-task__titlerow {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  min-height: 34px;
+}
+
+.card-task__title {
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.3;
   text-transform: uppercase;
   color: var(--color-text-heading);
-  cursor: pointer;
-  text-align: left;
-  min-height: 58px;
+  align-self: center;
 }
 
-.card-task.is-expanded .card-task__header {
-  border-bottom: var(--border-thin) solid var(--color-border);
-}
-
-.card-task__header .icon {
+.card-task__tag {
   flex: 0 0 auto;
-  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-heading);
+  align-self: center;
 }
 
+.card-task__tag::before { content: "["; }
+.card-task__tag::after { content: "]"; }
+
+/* Body: indented under the title, shown for done + current steps. */
 .card-task__body {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: var(--space-16);
-  padding: var(--space-16);
-}
-
-.card-task.is-expanded .card-task__body {
-  display: flex;
+  padding: 0 var(--space-16) var(--space-16) calc(var(--space-16) + 34px + var(--space-12));
 }
 
 .card-task__section-label {
@@ -484,4 +545,168 @@ main[hidden] {
 
 .lightbox-close:active {
   transform: translate(2px, 2px);
+}
+
+/* ---------- Progress + check-off (Neo-Brutalist) ---------- */
+
+/* Progress bar — red count badge + white track with black fill (design system). */
+.progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0 0 var(--space-24);
+}
+
+.progress__count {
+  flex: 0 0 auto;
+  min-width: 52px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border: var(--border-thin) solid var(--color-border);
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.progress.is-complete .progress__count {
+  background: var(--color-ink);
+}
+
+.progress__track {
+  flex: 1 1 auto;
+  height: 16px;
+  border: var(--border-thin) solid var(--color-border);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  width: 0;
+  background: var(--color-ink);
+  transition: width 0.2s ease;
+}
+
+/* Home card — done/total count tag between title and chevron. */
+.card-project {
+  gap: var(--space-8);
+}
+
+.card-project__title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.card-project__count {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border: var(--border-thin) solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+.card-project__count.is-complete {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+/* Step flow controls (on the current step) — primary "mark complete" + back. */
+.step-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+}
+
+.btn-complete {
+  flex: 1 1 auto;
+  padding: 12px 16px;
+  background: var(--color-ink);
+  color: #fff;
+  border: var(--border-thin) solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.04s ease, box-shadow 0.04s ease;
+}
+
+.btn-complete:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--color-ink);
+}
+
+/* Completion modal — shown when every step is done. */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24);
+  background: var(--color-overlay);
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
+  width: 100%;
+  max-width: 360px;
+  padding: var(--space-32) var(--space-24);
+  background: var(--color-surface);
+  border: var(--border-container) solid var(--color-border);
+  box-shadow: var(--shadow-container);
+}
+
+.modal__text {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-text-heading);
+}
+
+.modal__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  background: var(--color-ink);
+  color: #fff;
+  border: var(--border-thin) solid var(--color-border);
+  box-shadow: 4px 4px 0 var(--color-accent);
+  cursor: pointer;
+  transition: transform 0.04s ease, box-shadow 0.04s ease;
+}
+
+.modal__btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--color-accent);
+}
+
+.modal__btn svg {
+  width: 32px;
+  height: 32px;
+  display: block;
 }
