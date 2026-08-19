@@ -4,3 +4,6 @@
 
 # Editor
 .vscode/
+
+# Original full-size photos (optimized .jpg versions are committed)
+images/*.png
