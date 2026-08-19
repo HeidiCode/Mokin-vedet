@@ -629,7 +629,7 @@ button.card-task__head {
   background: var(--color-ink);
   color: #fff;
   border: var(--border-thin) solid var(--color-border);
-  box-shadow: var(--shadow-card);
+  box-shadow: 4px 4px 0 var(--color-accent);
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 700;
@@ -641,7 +641,7 @@ button.card-task__head {
 
 .btn-complete:active {
   transform: translate(4px, 4px);
-  box-shadow: 0 0 0 var(--color-ink);
+  box-shadow: 0 0 0 var(--color-accent);
 }
 
 /* Completion modal — shown when every step is done. */
