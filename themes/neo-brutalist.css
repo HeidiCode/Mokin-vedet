@@ -630,11 +630,6 @@ button.card-task__head {
   color: var(--color-ink);
 }
 
-.card-project__count.is-complete {
-  background: var(--color-ink);
-  color: #fff;
-}
-
 /* Step flow controls (on the current step) — primary "mark complete" + back. */
 .step-actions {
   display: flex;

@@ -533,20 +533,11 @@ button.card-task__head {
 }
 
 .card-project__count {
+  /* Minimalismi: numbers only, same colour as the card text — no pill, no done state. */
   flex: 0 0 auto;
   font-size: 14px;
   font-weight: 600;
-  padding: 2px 9px;
-  border-radius: var(--radius-full);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-link);
-}
-
-.card-project__count.is-complete {
-  background: var(--color-text-link);
-  border-color: var(--color-text-link);
-  color: #ffffff;
+  color: var(--color-text-primary);
 }
 
 /* Step flow controls (on the current step) — primary "mark complete" + back. */
