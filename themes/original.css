@@ -262,9 +262,17 @@ main[hidden] {
   overflow: hidden;
 }
 
-/* Locked (future) steps: title only, dimmed. */
-.card-task.is-locked {
-  opacity: 0.5;
+/* Locked (future) steps: title only, muted. Muted via explicit colors (not
+   opacity) so the text keeps ~4.5:1 contrast (AA) while still reading as inactive. */
+.card-task.is-locked .card-task__title,
+.card-task.is-locked .card-task__tag,
+.card-task.is-locked .task-badge {
+  color: #31769b; /* a lighter tint of the primary teal-blue; 4.75:1 on the card */
+}
+
+.card-task.is-locked .task-badge {
+  background: var(--color-surface); /* match the card so the badge recedes (more "locked") */
+  border-color: #d8dbe0;
 }
 
 .card-task.is-current {

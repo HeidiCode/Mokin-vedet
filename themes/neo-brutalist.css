@@ -4,15 +4,15 @@
 
 :root {
   /* Core palette — high-contrast, no gradients or tints */
-  --color-bg: #f3d761;            /* yellow ground */
+  --color-bg: #f7e186;            /* yellow ground (lightened for red-on-yellow contrast) */
   --color-surface: #ffffff;       /* white surfaces */
-  --color-surface-alert: #df202e; /* alarm red */
+  --color-surface-alert: #c21925; /* alarm red (darkened for contrast) */
   --color-ink: #000000;           /* black ink */
   --color-border: #000000;
   --color-text-primary: #111111;
   --color-text-heading: #000000;
   --color-text-link: #000000;
-  --color-accent: #df202e;
+  --color-accent: #c21925;
   --color-overlay: rgba(0, 0, 0, 0.85);
 
   /* No rounding in this system */
@@ -313,10 +313,23 @@ main[hidden] {
   overflow: hidden;
 }
 
-/* Locked (future) steps: title only, dimmed. */
+/* Locked (future) steps: title only, muted. Muted via explicit colors (not
+   opacity) so the text keeps ~4.5:1 contrast (AA) while still reading as inactive. */
 .card-task.is-locked {
-  opacity: 0.5;
   box-shadow: none;
+  background: #f9ecb8; /* faded yellow — card recedes toward the ground */
+  border-color: #cbbf88;
+}
+
+.card-task.is-locked .card-task__title,
+.card-task.is-locked .card-task__tag,
+.card-task.is-locked .task-badge {
+  color: #666666; /* 4.8:1 on the faded-yellow card */
+}
+
+.card-task.is-locked .task-badge {
+  background: transparent; /* show the card's yellow through the badge */
+  border-color: #cbbf88;
 }
 
 /* Head = number badge + title row. A `button` on done steps (tap to rewind). */
