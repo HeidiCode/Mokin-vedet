@@ -70,6 +70,34 @@ in the theme CSS files.
    `sips -s format jpeg -s formatOptions 70 -Z 1600 in.png --out in.jpg`
 2. Point the relevant key in `PHOTOS` (around line ~150 of `index.html`) at the
    file. Keep the `images/*.png` originals — they're gitignored on purpose.
+3. Add a Finnish description for the new file to the `ALT` map (keyed by image
+   path, just below `PHOTOS`) — it's the image's alt text (accessibility).
+
+## Accessibility
+
+Targets **WCAG 2.1 AA**; both themes pass **axe-core** (contrast, names,
+landmarks, headings) across the home, project, and completion-modal views. Keep it
+that way — the easy regressions:
+
+- **Contrast:** never dim things with `opacity` (it drops text below 4.5:1). Locked
+  steps use explicit muted colors instead — `#31769b` on the Minimalismi card,
+  `#666666` on the Neobrutalismi `#f9ecb8` locked card. The neo tokens are tuned
+  for contrast: ground `#f7e186`, accent red `#c21925` (keeps red-on-yellow labels
+  ≥4.5:1). Re-check if you retint.
+- **Photos:** each thumbnail button has a numbered `aria-label` ("Avaa kuva N") and
+  its image an alt from the `ALT` map — add an `ALT` entry with every new image.
+- **Modal:** `openCompleteModal` moves focus to the close button and traps Tab
+  there; `closeCompleteModal` returns focus to the step list. Preserve if you touch it.
+- **Motion:** transitions and the JS smooth-scroll honour `prefers-reduced-motion`
+  (media query in the `<head>` + `matchMedia` guard in `scrollToCurrent`).
+- **Structure:** `<html lang="fi">`, page title is the `<h1>`, group labels are
+  `<h2>`, the theme switcher is a labeled landmark (`role="region"`). The viewport
+  meta must **not** set `maximum-scale` (that blocks pinch-zoom).
+
+Re-audit (no build): serve `axe.min.js` locally (or paste it into the console),
+then `axe.run(document).then(r => console.log(r.violations))`. Check **both**
+themes (swap the `#theme-stylesheet` href) and the project + modal views, not just
+home.
 
 ## Preview locally
 

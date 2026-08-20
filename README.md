@@ -41,6 +41,18 @@ bottom of the screen; the choice is remembered (localStorage).
 
 No build step and no dependencies: open `index.html` in a browser to run it locally.
 
+## Accessibility
+
+The app aims for WCAG 2.1 AA and passes automated checks (axe-core) in **both**
+themes:
+
+- Sufficient colour contrast throughout Minimalismi and Neobrutalismi.
+- Every photo has a text description and every control an accessible name.
+- Keyboard-friendly — the completion dialog keeps focus inside it and returns
+  focus to the list on close.
+- Pinch-zoom stays enabled, and the interface honours the system "reduce motion"
+  setting.
+
 ## Deployment
 
 Hosted on GitHub Pages, served from the `main` branch. Any push to `main`
