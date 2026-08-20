@@ -2,7 +2,7 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mökin vedet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,6 +62,17 @@
     background: #194a63;
     color: #ffffff;
   }
+
+  /* Respect the OS "reduce motion" setting: drop transitions/animations and
+     smooth scrolling (the JS smooth-scroll is guarded separately). */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -105,8 +116,10 @@
   </div>
 </div>
 
-<!-- Theme switcher (CSS Zen Garden style: same markup, swappable stylesheet) -->
-<div class="theme-switch" role="group" aria-label="Vaihda teemaa">
+<!-- Theme switcher (CSS Zen Garden style: same markup, swappable stylesheet).
+     role="region" + a label makes it a landmark, so its controls aren't orphaned
+     outside the page's header/main landmarks. -->
+<div class="theme-switch" role="region" aria-label="Vaihda teemaa">
   <span class="theme-switch__label">Teema</span>
   <button type="button" class="theme-switch__btn" data-theme="original">Minimalismi</button>
   <button type="button" class="theme-switch__btn" data-theme="neo-brutalist">Neobrutalismi</button>
@@ -623,7 +636,7 @@ function renderProject(id) {
   stepGroups.innerHTML = process.groups.map(group => `
     <div class="step-group">
       <div class="step-group__header">
-        <p class="step-group__label">${group.label}</p>
+        <h2 class="step-group__label">${group.label}</h2>
         ${group.name ? `<p class="step-group__name">${group.name}</p>` : ""}
       </div>
       <div class="task-list">
@@ -658,9 +671,12 @@ function stepBy(delta) {
 }
 
 /* Completion modal — shown when the final step is marked done. Closing it resets
-   the process back to the start (progress is a one-shot run, not a saved record). */
+   the process back to the start (progress is a one-shot run, not a saved record).
+   Focus moves into the modal on open and returns to the step list on close; while
+   open, focus is kept on the close button (single-control focus trap). */
 function openCompleteModal() {
   completeModal.hidden = false;
+  completeClose.focus();
 }
 function closeCompleteModal() {
   completeModal.hidden = true;
@@ -669,6 +685,9 @@ function closeCompleteModal() {
     renderProject(currentProcessId);
     projectView.scrollTop = 0;
     window.scrollTo(0, 0);
+    // Return focus to something real in the (re-rendered) list.
+    const next = stepGroups.querySelector("[data-complete]") || backBtn;
+    if (next) next.focus();
   }
 }
 function setDoneAndRender(n) {
@@ -680,7 +699,9 @@ function setDoneAndRender(n) {
 }
 function scrollToCurrent() {
   const cur = stepGroups.querySelector(".card-task.is-current");
-  if (cur) cur.scrollIntoView({ behavior: "smooth", block: "center" });
+  if (!cur) return;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  cur.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
 }
 
 function showHome() {
@@ -743,6 +764,12 @@ completeModal.addEventListener("click", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
+  // While the completion modal is open, keep focus on its only control.
+  if (!completeModal.hidden && e.key === "Tab") {
+    e.preventDefault();
+    completeClose.focus();
+    return;
+  }
   if (e.key !== "Escape") return;
   if (!completeModal.hidden) closeCompleteModal();
   else if (!lightbox.hidden) closeLightbox();
