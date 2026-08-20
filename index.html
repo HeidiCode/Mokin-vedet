@@ -183,6 +183,24 @@ const PHOTOS = {
   p09: ["images/saunamokki_vesitukki.jpg"]
 };
 
+/* Alt text per image (Finnish descriptions derived from the photo names), used on
+   the fullscreen image. Keyed by path, so images reused across tasks map once. */
+const ALT = {
+  "images/ylamokki_boileri_virta.jpg": "Ylämökin boileri — virtakytkin",
+  "images/ylamokki_boileri_virta_vipu.jpg": "Ylämökin boileri — virtavipu (on/ei)",
+  "images/saunamokki_sulaketaulu.jpg": "Saunamökki — sulaketaulu",
+  "images/saunamokki_sulakketaulu_stotsit.jpg": "Saunamökki — sulaketaulu ja boilerin stotsit",
+  "images/saunamokki_boileri.jpg": "Saunamökki — boileri",
+  "images/saunamokki_boileri_ylipaineventtiili.jpg": "Saunamökin boileri — ylipaineventtiili",
+  "images/saunamokki_boileri_ilmaruuvi.jpg": "Saunamökin boileri — ilmausruuvi",
+  "images/ylamokki_boileri_venttiilit.jpg": "Ylämökin boileri — venttiilit",
+  "images/ylamokki_boileri_ylipaineventtiili.jpg": "Ylämökin boileri — ylipaineventtiili",
+  "images/ylamokki_kellari_nippa.jpg": "Ylämökki — nippa talon alla",
+  "images/ylamokki_kellari_paavesiletku.jpg": "Ylämökki — päävesiletku talon alla",
+  "images/saunamokki_vesitukki_sulut.jpg": "Saunamökki — vesimittarin sulut penkin alla",
+  "images/saunamokki_vesitukki.jpg": "Saunamökki — vesitukki penkin alla"
+};
+
 /* ---------- Data ----------
    Content transcribed from Processes.md. Each task's `photos` array holds photo
    keys (see PHOTOS above); the thumbnail grid + fullscreen viewer are wired up. */
@@ -548,9 +566,9 @@ function renderTask(task, num, total, status) {
               ${task.photos.flatMap(ref => {
                 const val = PHOTOS[ref] || ref;
                 return Array.isArray(val) ? val : [val];
-              }).map(src => `
-                <button class="attachment-thumb" data-photo="${src}">
-                  <img src="${src}" alt="" loading="lazy">
+              }).map((src, i) => `
+                <button class="attachment-thumb" data-photo="${src}" aria-label="Avaa kuva ${i + 1}">
+                  <img src="${src}" alt="${ALT[src] || ""}" loading="lazy">
                 </button>`).join("")}
             </div>
           </div>
@@ -686,12 +704,14 @@ function showProject(id) {
 
 function openLightbox(src) {
   lightboxImg.src = src;
+  lightboxImg.alt = ALT[src] || "";
   lightbox.hidden = false;
 }
 
 function closeLightbox() {
   lightbox.hidden = true;
   lightboxImg.src = "";
+  lightboxImg.alt = "";
 }
 
 /* ---------- Events ---------- */
