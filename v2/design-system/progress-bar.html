@@ -30,16 +30,16 @@
         <div class="ds-example" data-title="Under way">
           <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
             <div class="progress">
-              <span class="progress__count">3/12</span>
-              <div class="progress__track"><div class="progress__fill" style="width:25%"></div></div>
+              <span class="progress__count" aria-hidden="true">3/12</span>
+              <div class="progress__track" role="progressbar" aria-label="Edistyminen" aria-valuemin="0" aria-valuemax="12" aria-valuenow="3" aria-valuetext="3/12 vaihetta valmiina"><div class="progress__fill" style="width:25%"></div></div>
             </div>
           </div></div>
         </div>
         <div class="ds-example" data-title="Done">
           <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
             <div class="progress is-complete">
-              <span class="progress__count">12/12</span>
-              <div class="progress__track"><div class="progress__fill" style="width:100%"></div></div>
+              <span class="progress__count" aria-hidden="true">12/12</span>
+              <div class="progress__track" role="progressbar" aria-label="Edistyminen" aria-valuemin="0" aria-valuemax="12" aria-valuenow="12" aria-valuetext="12/12 vaihetta valmiina"><div class="progress__fill" style="width:100%"></div></div>
             </div>
           </div></div>
         </div>
@@ -83,7 +83,8 @@
       <section>
         <h2>Accessibility</h2>
         <ul class="ds-list">
-              <li>The count is real text, so the progress is read out, not only drawn.</li>
+              <li>The track is a <code>role="progressbar"</code> with its value as text, "3/12 vaihetta valmiina". The visible count is <code>aria-hidden</code> so it is not read twice.</li>
+              <li>When a step is marked done, a hidden live region says so: "Vaihe 3 valmis. 3/12."</li>
               <li>In Windows high-contrast mode the fill switches to the system text colour so the bar does not go empty.</li>
         </ul>
       </section>

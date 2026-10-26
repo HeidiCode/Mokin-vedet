@@ -107,6 +107,25 @@ the only thing outlining that card. **Re-run axe-core against `v2/` after any
 retint** — the token-level check does not cover focus order, names or the
 lightbox.
 
+Keyboard and screen reader, as audited 2026-10-26 (axe clean on all six
+processes, lightbox and modal):
+
+- **Focus never drops to `<body>`.** Every re-render destroys the pressed
+  button, so the script hands focus on: opening a process → the `<h1>`;
+  *Merkitse valmiiksi* or a rewind → the new current step's head
+  (`tabindex="-1"`, via `focusCurrent()`); *Takaisin* → the home card you came
+  from. Keep this if you touch `stepBy`, `setDoneAndRender`, `showProject` or
+  `showHome`.
+- **`#live-status`** (`role="status"`) says what a tap did ("Vaihe 2 valmis.
+  2/5.", "Palattu vaiheeseen 1."), since the re-render is silent.
+- **Progress** is a `role="progressbar"` on `#progress-track`; the visible
+  `0/5` count is `aria-hidden` so it is not read twice. Home counts carry a
+  `.sr-only` "vaihetta valmiina".
+- **Focus ring** is a 2px ink outline with a 2px gap (`:focus-visible` in
+  `stylesV2.css`), white in the lightbox, and drawn around the whole card for a
+  done step's head. The browser default vanished against the 2px borders.
+- `document.title` follows the view.
+
 ## Themes (CSS Zen Garden model)
 
 Same HTML, swappable stylesheet. The fixed switcher at the bottom rewrites the

@@ -31,7 +31,7 @@
           <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
             <div class="task-list">
               <div class="card-task is-current">
-                <div class="card-task__head">
+                <div class="card-task__head" tabindex="-1">
                   <span class="task-badge">
                     <span class="task-badge__num">2</span>
                     <i data-icon="check"></i>
@@ -116,7 +116,7 @@
                 </button>
               </div>
               <div class="card-task is-current">
-                <div class="card-task__head">
+                <div class="card-task__head" tabindex="-1">
                   <span class="task-badge">
                     <span class="task-badge__num">2</span>
                     <i data-icon="check"></i>
@@ -213,7 +213,7 @@
         <ul class="ds-list">
               <li>Valmis and Kesken are hidden visually but read out, so the state is never only visual.</li>
               <li>The padlock is an image with <code>aria-label="Lukittu"</code>.</li>
-              <li>When a step is marked done, focus moves to the next current step.</li>
+              <li>When a step is marked done or rewound, focus moves to the new current step's head, which has <code>tabindex="-1"</code> for that reason, and a hidden live region announces the change.</li>
               <li>The locked card's dashed border is its only outline and stays above 3:1.</li>
         </ul>
       </section>

@@ -53,7 +53,9 @@
           <li><strong>Headings.</strong> The page title is the <code>&lt;h1&gt;</code>; phase labels are <code>&lt;h2&gt;</code>.</li>
           <li><strong>State in words.</strong> The words Valmis and Kesken are hidden visually with <code>.sr-only</code> but still read out. The padlock has <code>aria-label="Lukittu"</code>.</li>
           <li><strong>Photos.</strong> Each thumbnail button has a numbered label, "Avaa kuva 1", and its image an alt text.</li>
-          <li><strong>Overlays.</strong> The lightbox and the modal are <code>role="dialog"</code> with <code>aria-modal</code>; they take focus when they open, keep Tab inside, and give focus back when they close.</li>
+          <li><strong>Focus is never lost.</strong> A re-render throws away the button that was pressed, so the script hands focus on: opening a process moves it to the page title, marking a step done or rewinding moves it to the new current step, and going back moves it to the card you came from.</li>
+        <li><strong>Changes are announced.</strong> A hidden <code>role="status"</code> region says what a tap did, for example "Vaihe 2 valmis. 2/5."</li>
+        <li><strong>Overlays.</strong> The lightbox and the modal are <code>role="dialog"</code> with <code>aria-modal</code>; they take focus when they open, keep Tab inside, and give focus back when they close.</li>
           <li><strong>Touch targets.</strong> At least 44 × 44px.</li>
           <li><strong>Zoom.</strong> The viewport must not set <code>maximum-scale</code>.</li>
           <li><strong>Motion.</strong> Transitions and smooth scrolling are switched off under <code>prefers-reduced-motion</code>.</li>

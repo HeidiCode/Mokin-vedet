@@ -30,7 +30,7 @@
         <div class="ds-example" data-title="Home">
           <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
             <header class="app-bar">
-              <h1 class="app-bar__title">Mökin vedet</h1>
+              <h1 class="app-bar__title" tabindex="-1">Mökin vedet</h1>
             </header>
           </div></div>
         </div>
@@ -38,7 +38,7 @@
           <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
             <header class="app-bar">
               <button class="icon-btn" aria-label="Takaisin"><i data-icon="arrowLeft"></i></button>
-              <h1 class="app-bar__title">Kesä — Palaaminen</h1>
+              <h1 class="app-bar__title" tabindex="-1">Kesä — Palaaminen</h1>
             </header>
           </div></div>
         </div>
@@ -81,7 +81,7 @@
       <section>
         <h2>Accessibility</h2>
         <ul class="ds-list">
-              <li>The title is the page's only <code>&lt;h1&gt;</code>.</li>
+              <li>The title is the page's only <code>&lt;h1&gt;</code>. It has <code>tabindex="-1"</code> so that opening a process can move focus to it; it is not a control and shows no focus ring.</li>
               <li>The back button has <code>aria-label="Takaisin"</code> because it shows only an icon.</li>
               <li>The button is 44 × 44px, the minimum touch target.</li>
         </ul>

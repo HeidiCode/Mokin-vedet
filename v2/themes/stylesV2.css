@@ -44,6 +44,37 @@ a:hover { color: var(--text); }
   border: 0;
 }
 
+/* Keyboard focus. The browser's own ring is a thin dark line, and on the
+   bordered cards it sat right on the 2px ink border and disappeared. A 2px ring
+   with a 2px gap of page colour reads on every surface here. */
+:focus-visible {
+  outline: var(--border) solid var(--ink);
+  outline-offset: var(--border);
+}
+
+/* A done step's head is a button that runs edge to edge inside the card, so
+   its ring would cut across the card. Ring the whole card instead. */
+button.card-task__head:focus-visible { outline: none; }
+.card-task:has(> button.card-task__head:focus-visible) {
+  outline: var(--border) solid var(--ink);
+  outline-offset: var(--border);
+}
+
+/* The overlay behind the lightbox is near-black, so its ring is white. */
+.lightbox :focus-visible { outline-color: var(--card); }
+
+/* Script moves focus to the page title and the current step so screen readers
+   land there; they are not controls, so they get no ring. */
+[tabindex="-1"]:focus { outline: none; }
+
+/* Keep a focused card from scrolling in under the sticky progress bar. */
+html { scroll-padding-top: var(--space-64); }
+
+/* Windows high-contrast drops background colours, which would empty the bar. */
+@media (forced-colors: active) {
+  .progress__fill { background: CanvasText; forced-color-adjust: none; }
+}
+
 #app {
   max-width: 600px;
   margin: 0 auto;
@@ -428,6 +459,8 @@ button.card-task__head { cursor: pointer; }
 }
 
 .card-task__title {
+  min-width: 0;
+  overflow-wrap: anywhere;  /* a long word must wrap, not push the padlock out */
   font-family: var(--font-head);
   font-size: var(--title-size);
   line-height: round(1.4em, 1px);

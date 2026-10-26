@@ -32,7 +32,7 @@
             <div class="card-list">
               <button class="card-project">
                 <span class="card-project__title">Kesä — Palaaminen</span>
-                <span class="card-project__count">0/5</span>
+                <span class="card-project__count">0/5<span class="sr-only"> vaihetta valmiina</span></span>
                 <i data-icon="chevronRight"></i>
               </button>
             </div>
@@ -43,7 +43,7 @@
             <div class="card-list">
               <button class="card-project">
                 <span class="card-project__title">Kesä — Poistuminen</span>
-                <span class="card-project__count is-complete">12/12</span>
+                <span class="card-project__count is-complete">12/12<span class="sr-only"> vaihetta valmiina</span></span>
                 <i data-icon="chevronRight"></i>
               </button>
             </div>
@@ -91,7 +91,8 @@
         <h2>Accessibility</h2>
         <ul class="ds-list">
               <li>It is a real <code>&lt;button&gt;</code>, so it works with keyboard and screen readers.</li>
-              <li>The counter is read as part of the button's name, e.g. "Kesä — Palaaminen 0/5".</li>
+              <li>The counter is read as part of the button's name. A hidden "vaihetta valmiina" makes it "Kesä — Palaaminen 0/5 vaihetta valmiina".</li>
+              <li>Coming back from a process, focus returns to the card you opened.</li>
         </ul>
       </section>
 

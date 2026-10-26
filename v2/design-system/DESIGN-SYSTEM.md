@@ -110,8 +110,7 @@ Target WCAG 2.1 AA, checked with axe-core.
   must stay ≥ 3:1. `--accent` is a fill under dark text; `--accent-ink` is for
   text. They do not follow each other: check both after a retint.
 - **Focus ring:** 2px `--ink` `:focus-visible` outline with a 2px gap; white
-  inside the lightbox; around the whole card for a done step's head (lands
-  with the keyboard-focus PR #4).
+  inside the lightbox; around the whole card for a done step's head.
 - Overlays (`.lightbox`, `.modal__box`) are `role="dialog"` + `aria-modal`, take
   focus on open, trap Tab, and return focus on close.
 - Thumbnails have a numbered `aria-label` ("Avaa kuva N") and an alt from `ALT`.
