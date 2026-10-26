@@ -71,10 +71,8 @@
   --border: 2px;
   --shadow-offset: 3px;
 
-  --space-2: 2px;
   --space-4: 4px;
   --space-8: 8px;
-  --space-12: 12px;
   --space-16: 16px;
   --space-24: 24px;
   --space-32: 32px;
@@ -202,7 +200,7 @@ main[hidden] { display: none; }
   gap: var(--space-8);
   width: 100%;
   min-height: 60px;
-  padding: var(--space-12) var(--space-12) var(--space-12) var(--space-16);
+  padding: var(--space-16);
   background: var(--card);
   border: var(--border) solid var(--ink);
   border-radius: var(--radius);
@@ -237,7 +235,7 @@ main[hidden] { display: none; }
   /* Fixed-width box on whole pixels: a width that follows the digits lands
      the left border between two pixels, and it blurs. 56px fits "16/16". */
   min-width: 56px;
-  padding: 3px 8px;
+  padding: var(--space-4) var(--space-8);
   text-align: center;
   font-variant-numeric: tabular-nums;
   line-height: round(1.3em, 1px);
@@ -256,7 +254,7 @@ main[hidden] { display: none; }
 
 .contact-box {
   display: flex;
-  gap: var(--space-12);
+  gap: var(--space-8);
   margin-top: auto;
   padding: var(--space-16);
   background: var(--card);
@@ -298,15 +296,15 @@ main[hidden] { display: none; }
   align-items: center;
   gap: var(--space-8);
   margin: 0 calc(-1 * var(--space-16)) var(--space-24);
-  padding: var(--space-12) var(--space-16);
+  padding: var(--space-8) var(--space-16);
   background: var(--ground);
   border-bottom: var(--border) solid var(--ink);
 }
 
 .progress__count {
   flex: 0 0 auto;
-  min-width: 54px;
-  padding: 5px 10px;
+  min-width: 56px;
+  padding: var(--space-4) var(--space-8);
   text-align: center;
   line-height: round(1.3em, 1px); /* even height, so the track centres on a whole pixel */
   font-size: var(--label-size);
@@ -342,14 +340,14 @@ main[hidden] { display: none; }
 
 .page-tools {
   margin: 0 0 var(--space-24);
-  padding: 13px 15px;
+  padding: var(--space-16);
   background: var(--card);
   border: var(--border) solid var(--ink);
   border-radius: var(--radius);
 }
 
 .page-tools__label {
-  margin: 0 0 6px;
+  margin: 0 0 var(--space-4);
   font-size: var(--label-size);
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -358,7 +356,7 @@ main[hidden] { display: none; }
 }
 
 .page-tools__row {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-4);
   font-size: var(--body-size);
   line-height: round(1.5em, 1px);
   color: var(--text);
@@ -402,7 +400,7 @@ main[hidden] { display: none; }
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-16);
 }
 
 .card-task {
@@ -443,10 +441,10 @@ main[hidden] { display: none; }
 /* Head = badge + title row. A `button` on done steps (tap to rewind). */
 .card-task__head {
   display: flex;
-  gap: var(--space-12);
+  gap: var(--space-16);
   align-items: flex-start;
   width: 100%;
-  padding: 16px var(--space-16);
+  padding: var(--space-16);
   background: transparent;
   border: none;
   text-align: left;
@@ -528,8 +526,8 @@ button.card-task__head { cursor: pointer; }
 .card-task__body {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 0 var(--space-16) 18px var(--space-16);
+  gap: var(--space-16);
+  padding: 0 var(--space-16) var(--space-16);
 }
 
 .card-task__section-label {
@@ -557,7 +555,7 @@ button.card-task__head { cursor: pointer; }
 .attachments-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: var(--space-8);
 }
 
 .attachment-thumb {
@@ -585,7 +583,7 @@ button.card-task__head { cursor: pointer; }
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 6px 0;
+  padding: var(--space-4) 0;
   background: var(--ink);
   color: var(--card);
   font-family: var(--font-body);
@@ -604,9 +602,9 @@ button.card-task__head { cursor: pointer; }
 .alert-box {
   position: relative;
   display: flex;
-  gap: 10px;
-  margin-top: 12px;
-  padding: 24px 14px 14px;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+  padding: var(--space-24) var(--space-16) var(--space-16);
   background: var(--alert-bg);
   border: var(--border) solid var(--ink);
   border-radius: var(--radius);
@@ -618,10 +616,10 @@ button.card-task__head { cursor: pointer; }
 /* Same size and weight as the VAIHE 1 label — both follow --label-size. */
 .alert-box__title {
   position: absolute;
-  top: -13px;
-  left: 12px;
+  top: -14px; /* centres the 30px tab on the box's 2px top border */
+  left: var(--space-16);
   margin: 0;
-  padding: 3px 10px;
+  padding: var(--space-4) var(--space-8);
   background: var(--accent-ink);
   color: #ffffff;
   border: var(--border) solid var(--ink);
@@ -647,7 +645,7 @@ button.card-task__head { cursor: pointer; }
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  margin-top: var(--space-4);
+  margin-top: var(--space-8);
 }
 
 .btn-complete {
@@ -733,7 +731,7 @@ button.card-task__head { cursor: pointer; }
   gap: var(--space-16);
   width: 100%;
   max-width: 360px;
-  padding: 28px 22px;
+  padding: var(--space-24);
   background: var(--card);
   border: var(--border) solid var(--ink);
   border-radius: 14px;
