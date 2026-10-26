@@ -414,7 +414,6 @@ main[hidden] { display: none; }
 }
 
 .card-task.is-current {
-  border-width: 3px;
   box-shadow: 5px 5px 0 var(--accent);
 }
 
@@ -736,7 +735,7 @@ button.card-task__head { cursor: pointer; }
   max-width: 360px;
   padding: 28px 22px;
   background: var(--card);
-  border: 3px solid var(--ink);
+  border: var(--border) solid var(--ink);
   border-radius: 14px;
   box-shadow: 6px 6px 0 var(--accent);
 }
