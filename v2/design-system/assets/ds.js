@@ -117,12 +117,14 @@
       btn.addEventListener("click", () => {
         const open = side.classList.toggle("is-open");
         btn.setAttribute("aria-expanded", String(open));
+        document.documentElement.classList.toggle("ds-menu-open", open);
         if (open) { const a = $("a[aria-current]", side) || $("a", side); if (a) a.focus({ preventScroll: true }); }
       });
       document.addEventListener("keydown", e => {
         if (e.key === "Escape" && side.classList.contains("is-open")) {
           side.classList.remove("is-open");
           btn.setAttribute("aria-expanded", "false");
+          document.documentElement.classList.remove("ds-menu-open");
           btn.focus();
         }
       });
