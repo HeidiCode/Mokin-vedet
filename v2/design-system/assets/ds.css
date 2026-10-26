@@ -548,7 +548,10 @@ a.ds-card:active { transform: translate(var(--shadow-offset), var(--shadow-offse
   color: var(--muted);
 }
 .ds-pager { display: flex; justify-content: space-between; gap: var(--space-16); margin-top: var(--space-64); }
-.ds-pager a { flex: 1 1 0; max-width: 50%; }
+.ds-pager a { flex: 1 1 0; max-width: 50%; display: flex; align-items: center; gap: var(--space-16); }
+.ds-pager .icon { flex: 0 0 auto; width: 24px; height: 24px; }
+.ds-pager .ds-next { justify-content: flex-end; }
+.ds-pager .ds-next .icon { transform: scaleX(-1); }   /* the app bar's back arrow, pointing forward */
 .ds-pager a:only-child.ds-next { margin-left: auto; }
 .ds-pager small { display: block; font-size: var(--label-size); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ink); }
 .ds-pager .ds-next { text-align: right; }

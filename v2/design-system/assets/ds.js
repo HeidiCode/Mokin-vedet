@@ -139,8 +139,8 @@
       pager.className = "ds-pager";
       pager.setAttribute("aria-label", "Previous and next page");
       pager.innerHTML =
-        (prev ? `<a class="ds-card ds-prev" href="${prev[0]}"><small>Previous</small>${prev[1]}</a>` : "") +
-        (next ? `<a class="ds-card ds-next" href="${next[0]}"><small>Next</small>${next[1]}</a>` : "");
+        (prev ? `<a class="ds-card ds-prev" href="${prev[0]}">${icons.arrowLeft || ""}<span><small>Previous</small>${prev[1]}</span></a>` : "") +
+        (next ? `<a class="ds-card ds-next" href="${next[0]}"><span><small>Next</small>${next[1]}</span>${icons.arrowLeft || ""}</a>` : "");
       doc.appendChild(pager);
     }
     const foot = document.createElement("footer");
@@ -388,6 +388,11 @@
   }
 
   /* ---------- Go ---------- */
+
+  /* A new page opens at its top. Browsers (and some embedding frames) can
+     carry the previous scroll position over; only a #section link may move. */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!location.hash) window.scrollTo(0, 0);
 
   renderShell();
   renderExamples();
