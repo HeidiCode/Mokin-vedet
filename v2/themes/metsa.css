@@ -530,6 +530,10 @@ button.card-task__head { cursor: pointer; }
   padding: 0 var(--space-16) var(--space-16);
 }
 
+/* The current step ends in the Merkitse valmiiksi button, whose 3px shadow
+   eats into the gap below it: 24px leaves 21px of visible space. */
+.card-task.is-current .card-task__body { padding-bottom: var(--space-24); }
+
 .card-task__section-label {
   margin: 0 0 var(--space-4);
   font-size: var(--label-size);
