@@ -464,11 +464,10 @@ function renderHome() {
   processList.innerHTML = Object.entries(processes).map(([id, process]) => {
     const total = processTotal(process);
     const done = getDone(id, process);
-    const complete = total > 0 && done === total;
     return `
     <button class="card-project" data-process="${id}">
       <span class="card-project__title">${process.title}</span>
-      <span class="card-project__count${complete ? " is-complete" : ""}">${done}/${total}<span class="sr-only"> vaihetta valmiina</span></span>
+      <span class="card-project__count">${done}/${total}<span class="sr-only"> vaihetta valmiina</span></span>
       ${icons.chevronRight}
     </button>
   `;

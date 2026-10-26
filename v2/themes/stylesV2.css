@@ -215,8 +215,6 @@ main[hidden] { display: none; }
   color: var(--text);
 }
 
-.card-project__count.is-complete { background: var(--accent); }
-
 /* ---------- Home — contact box ---------- */
 
 .contact-box {
