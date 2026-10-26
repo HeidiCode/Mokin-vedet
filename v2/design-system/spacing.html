@@ -23,7 +23,7 @@
     <article class="ds-doc">
       <p class="ds-eyebrow">Foundations</p>
       <h1>Spacing and shape</h1>
-      <p class="ds-lead">Everything sits on an 8px grid, every line is 2px, and every edge lands on a whole pixel. Cards are softly rounded and cast a hard ink shadow when they can be pressed.</p>
+      <p class="ds-lead">Everything sits on an 8px grid, every line is 2px, and every edge lands on a whole pixel. Cards are softly rounded and cast a hard shadow when they can be pressed.</p>
 
       <section>
         <h2>Spacing scale</h2>
@@ -48,10 +48,10 @@
 
       <section>
         <h2>Borders</h2>
-        <p><code>--border</code> is 2px, on every card, button, badge and box, including the current step and the modal. State is never shown with a thicker line. The locked step is the one exception in style, not width: its border is dashed.</p>
+        <p><code>--border-width</code> is 2px, on every card, button, badge and box, including the current step and the modal. State is never shown with a thicker line. The locked step is the one exception in style, not width: its border is dashed.</p>
         <div class="ds-grid">
-          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius)"></div><code>solid, --ink</code></div>
-          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);border-style:dashed;border-color:var(--locked-line);background:var(--locked-bg)"></div><code>dashed, --locked-line</code></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius)"></div><code>solid, --border</code></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);border-style:dashed;border-color:var(--border-locked);background:var(--bg-locked)"></div><code>dashed, --border-locked</code></div>
         </div>
       </section>
 
@@ -68,9 +68,9 @@
         <h2>Shadow</h2>
         <p>A hard, unblurred shadow offset by <code>--shadow-offset</code> marks something you can press. On press, the element moves into its shadow. The current step and the modal cast a wider shadow in the accent colour instead.</p>
         <div class="ds-grid">
-          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--ink)"></div><code>3px ink</code><span>Buttons, process cards</span></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--shadow)"></div><code>3px --shadow</code><span>Buttons, process cards</span></div>
           <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);box-shadow:5px 5px 0 var(--accent)"></div><code>5px accent</code><span>Current step</span></div>
-          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);background:var(--done-bg)"></div><code>none</code><span>Done and locked steps, static boxes</span></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);background:var(--bg-done)"></div><code>none</code><span>Done and locked steps, static boxes</span></div>
         </div>
       </section>
 

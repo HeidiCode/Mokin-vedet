@@ -23,11 +23,11 @@ body { margin: 0; padding: 0; }
 body {
   font-family: var(--font-body);
   color: var(--text);
-  background: var(--ground);
+  background: var(--bg-page);
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--accent-ink); }
+a { color: var(--text-accent); }
 a:hover { color: var(--text); }
 
 /* Visually hidden but still announced. Carries the Valmis / Kesken status that
@@ -45,23 +45,23 @@ a:hover { color: var(--text); }
 }
 
 /* Keyboard focus. The browser's own ring is a thin dark line, and on the
-   bordered cards it sat right on the 2px ink border and disappeared. A 2px ring
+   bordered cards it sat right on the 2px border and disappeared. A 2px ring
    with a 2px gap of page colour reads on every surface here. */
 :focus-visible {
-  outline: var(--border) solid var(--ink);
-  outline-offset: var(--border);
+  outline: var(--border-width) solid var(--border);
+  outline-offset: var(--border-width);
 }
 
 /* A done step's head is a button that runs edge to edge inside the card, so
    its ring would cut across the card. Ring the whole card instead. */
 button.card-task__head:focus-visible { outline: none; }
 .card-task:has(> button.card-task__head:focus-visible) {
-  outline: var(--border) solid var(--ink);
-  outline-offset: var(--border);
+  outline: var(--border-width) solid var(--border);
+  outline-offset: var(--border-width);
 }
 
 /* The overlay behind the lightbox is near-black, so its ring is white. */
-.lightbox :focus-visible { outline-color: var(--card); }
+.lightbox :focus-visible { outline-color: var(--bg-card); }
 
 /* Script moves focus to the page title and the current step so screen readers
    land there; they are not controls, so they get no ring. */
@@ -79,7 +79,7 @@ html { scroll-padding-top: var(--space-64); }
   max-width: 600px;
   margin: 0 auto;
   min-height: 100vh;
-  background: var(--ground);
+  background: var(--bg-page);
   display: flex;
   flex-direction: column;
 }
@@ -90,8 +90,8 @@ html { scroll-padding-top: var(--space-64); }
   position: relative;
   height: 64px;
   flex: 0 0 auto;
-  background: var(--appbar);
-  border-bottom: var(--border) solid var(--ink);
+  background: var(--bg-appbar);
+  border-bottom: var(--border-width) solid var(--border);
 }
 
 .app-bar__title {
@@ -131,7 +131,7 @@ html { scroll-padding-top: var(--space-64); }
   cursor: pointer;
 }
 
-.icon-btn:hover { background: var(--ground); }
+.icon-btn:hover { background: var(--bg-page); }
 .icon-btn[hidden] { display: none; }
 
 /* ---------- Views ---------- */
@@ -168,10 +168,10 @@ main[hidden] { display: none; }
   width: 100%;
   min-height: 60px;
   padding: var(--space-16);
-  background: var(--card);
-  border: var(--border) solid var(--ink);
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow);
   font-family: var(--font-head);
   font-size: var(--title-size);
   font-weight: var(--title-weight);
@@ -184,7 +184,7 @@ main[hidden] { display: none; }
 
 .card-project:active {
   transform: translate(var(--shadow-offset), var(--shadow-offset));
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shadow);
 }
 
 .card-project .icon {
@@ -206,9 +206,9 @@ main[hidden] { display: none; }
   text-align: center;
   font-variant-numeric: tabular-nums;
   line-height: round(1.3em, 1px);
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--card);
+  background: var(--bg-card);
   font-family: var(--font-body);
   font-size: var(--label-size);
   font-weight: 800;
@@ -222,14 +222,14 @@ main[hidden] { display: none; }
   gap: var(--space-8);
   margin-top: auto;
   padding: var(--space-16);
-  background: var(--card);
-  border: var(--border) solid var(--ink);
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
 }
 
 .contact-box .icon {
   flex: 0 0 auto;
-  color: var(--accent-ink);
+  color: var(--text-accent);
 }
 
 .contact-box__title {
@@ -262,8 +262,8 @@ main[hidden] { display: none; }
   gap: var(--space-8);
   margin: 0 calc(-1 * var(--space-16)) var(--space-24);
   padding: var(--space-8) var(--space-16);
-  background: var(--ground);
-  border-bottom: var(--border) solid var(--ink);
+  background: var(--bg-page);
+  border-bottom: var(--border-width) solid var(--border);
 }
 
 .progress__count {
@@ -274,7 +274,7 @@ main[hidden] { display: none; }
   line-height: round(1.3em, 1px); /* even height, so the track centres on a whole pixel */
   font-size: var(--label-size);
   font-weight: 700;
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--accent);
   color: var(--text);
@@ -283,16 +283,16 @@ main[hidden] { display: none; }
 .progress__track {
   flex: 1 1 auto;
   height: 14px;
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--card);
+  background: var(--bg-card);
   overflow: hidden;
 }
 
 .progress__fill {
   height: 100%;
   width: 0;
-  background: var(--ink);
+  background: var(--border);
   transition: width 0.2s ease;
 }
 
@@ -306,8 +306,8 @@ main[hidden] { display: none; }
 .page-tools {
   margin: 0 0 var(--space-24);
   padding: var(--space-16);
-  background: var(--card);
-  border: var(--border) solid var(--ink);
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
 }
 
@@ -317,7 +317,7 @@ main[hidden] { display: none; }
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent-ink);
+  color: var(--text-accent);
 }
 
 .page-tools__row {
@@ -335,7 +335,7 @@ main[hidden] { display: none; }
   padding-top: var(--space-8);
   padding-bottom: var(--space-8);
   margin-bottom: var(--space-16);
-  border-bottom: var(--border) solid var(--ink);
+  border-bottom: var(--border-width) solid var(--border);
 }
 
 .step-group__label {
@@ -344,7 +344,7 @@ main[hidden] { display: none; }
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent-ink);
+  color: var(--text-accent);
 }
 
 .step-group__name {
@@ -369,10 +369,10 @@ main[hidden] { display: none; }
 }
 
 .card-task {
-  background: var(--card);
-  border: var(--border) solid var(--ink);
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow);
   overflow: visible;
 }
 
@@ -381,26 +381,26 @@ main[hidden] { display: none; }
 }
 
 .card-task.is-done {
-  background: var(--done-bg);
+  background: var(--bg-done);
   box-shadow: none;
 }
 
 .card-task.is-locked {
-  background: var(--locked-bg);
+  background: var(--bg-locked);
   border-style: dashed;
-  border-color: var(--locked-line);
+  border-color: var(--border-locked);
   box-shadow: none;
 }
 
 /* Muted with explicit colours, never opacity — opacity drops text below 4.5:1. */
 .card-task.is-locked .card-task__title,
 .card-task.is-locked .card-task__tag,
-.card-task.is-locked .task-badge { color: var(--muted); }
+.card-task.is-locked .task-badge { color: var(--text-muted); }
 
 .card-task.is-locked .task-badge {
   background: transparent;
   border-style: dashed;
-  border-color: var(--locked-line);
+  border-color: var(--border-locked);
 }
 
 /* Head = badge + title row. A `button` on done steps (tap to rewind). */
@@ -426,9 +426,9 @@ button.card-task__head { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--card);
+  background: var(--bg-card);
   color: var(--text);
   font-size: 16px;
   font-weight: 800;
@@ -477,11 +477,11 @@ button.card-task__head { cursor: pointer; }
   font-weight: var(--title-weight);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 /* Only the locked tag carries an svg, so this reaches nothing else. */
-.card-task__tag svg { width: 28px; height: 28px; display: block; color: var(--lock);
+.card-task__tag svg { width: 28px; height: 28px; display: block; color: var(--icon-lock);
   margin-top: 2px; }
 
 /* The padlock sits in the top right, level with the number badge. The row is
@@ -503,7 +503,7 @@ button.card-task__head { cursor: pointer; }
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent-ink);
+  color: var(--text-accent);
 }
 
 .card-task__section-text {
@@ -530,9 +530,9 @@ button.card-task__head { cursor: pointer; }
   width: 94px;
   height: 94px;
   padding: 0;
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--card);
+  background: var(--bg-card);
   overflow: hidden;
   cursor: pointer;
 }
@@ -551,8 +551,8 @@ button.card-task__head { cursor: pointer; }
   right: 0;
   bottom: 0;
   padding: var(--space-4) 0;
-  background: var(--ink);
-  color: var(--card);
+  background: var(--border);
+  color: var(--bg-card);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 800;
@@ -572,8 +572,8 @@ button.card-task__head { cursor: pointer; }
   gap: var(--space-8);
   margin-top: var(--space-16);
   padding: var(--space-24) var(--space-16) var(--space-16);
-  background: var(--alert-bg);
-  border: var(--border) solid var(--ink);
+  background: var(--bg-note);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
 }
@@ -587,9 +587,9 @@ button.card-task__head { cursor: pointer; }
   left: var(--space-16);
   margin: 0;
   padding: var(--space-4) var(--space-8);
-  background: var(--accent-ink);
+  background: var(--text-accent);
   color: #ffffff;
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: 6px;
   font-family: var(--font-body);
   font-size: var(--label-size);
@@ -621,9 +621,9 @@ button.card-task__head { cursor: pointer; }
   padding: var(--space-16);
   background: var(--accent);
   color: var(--text);
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow);
   font-family: var(--font-head);
   font-size: var(--btn-size);
   font-weight: var(--btn-weight);
@@ -633,7 +633,7 @@ button.card-task__head { cursor: pointer; }
 
 .btn-complete:active {
   transform: translate(var(--shadow-offset), var(--shadow-offset));
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shadow);
 }
 
 /* ---------- Lightbox ---------- */
@@ -654,7 +654,7 @@ button.card-task__head { cursor: pointer; }
   max-width: 92vw;
   max-height: 92vh;
   object-fit: contain;
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
 }
 
@@ -667,9 +667,9 @@ button.card-task__head { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--card);
+  background: var(--bg-card);
   color: var(--text);
   cursor: pointer;
 }
@@ -699,8 +699,8 @@ button.card-task__head { cursor: pointer; }
   width: 100%;
   max-width: 360px;
   padding: var(--space-24);
-  background: var(--card);
-  border: var(--border) solid var(--ink);
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border);
   border-radius: 14px;
   box-shadow: 6px 6px 0 var(--accent);
 }
@@ -711,9 +711,9 @@ button.card-task__head { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--locked-bg);
+  background: var(--bg-locked);
   color: var(--text);
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
 }
 
@@ -746,9 +746,9 @@ button.card-task__head { cursor: pointer; }
   padding: var(--space-16);
   background: var(--accent);
   color: var(--text);
-  border: var(--border) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow);
   font-family: var(--font-head);
   font-size: var(--btn-size);
   font-weight: var(--btn-weight);
@@ -758,5 +758,5 @@ button.card-task__head { cursor: pointer; }
 
 .modal__btn:active {
   transform: translate(var(--shadow-offset), var(--shadow-offset));
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: 0 0 0 var(--shadow);
 }

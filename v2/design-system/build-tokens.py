@@ -5,8 +5,8 @@
     python3 v2/design-system/build-tokens.py --check  # exit 1 if it is stale
 
 Each leaf key in tokens.json becomes a custom property of the same name
-(`ground` -> `--ground`); the groups only organise. An alias such as
-"{color.ink}" becomes `var(--ink)`. Standard library only, no build step for
+(`bg-page` -> `--bg-page`); the groups only organise. An alias such as
+"{color.text}" becomes `var(--text)`. Standard library only, no build step for
 the site itself: the generated file is committed.
 """
 
