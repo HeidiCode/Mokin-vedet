@@ -1,4 +1,4 @@
-# Metsä — the Mökin vedet v2 design system
+# Hana — the Mökin vedet v2 design system
 
 The visual language of `v2/`. Written for people and for AI agents: read this
 before you add or change anything that is drawn on screen.

@@ -1,4 +1,4 @@
-/* Metsä design system — the documentation site's script.
+/* Hana design system — the documentation site's script.
    ---------------------------------------------------------------------------
    Every page is plain HTML with its own content. This script adds what all
    pages share, so it is written once:
@@ -91,7 +91,7 @@
       top.innerHTML = `
         <button class="ds-menu-btn" type="button" aria-controls="ds-side" aria-expanded="false" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4h16v2H2zM2 9h16v2H2zM2 14h16v2H2z" fill="currentColor"/></svg></button>
         <a class="ds-brand" href="index.html">
-          <span class="ds-brand__name">Metsä</span>
+          <span class="ds-brand__name">Hana</span>
           <span class="ds-brand__sub">Mökin vedet v2 · Design system</span>
         </a>
         <div class="ds-top__links">
@@ -145,7 +145,7 @@
     }
     const foot = document.createElement("footer");
     foot.className = "ds-foot";
-    foot.innerHTML = `Metsä is the design system of <a href="../">Mökin vedet v2</a>. Every value on this site is read live from <a href="${SRC}design-system/tokens.json">tokens.json</a> and the app's own CSS.`;
+    foot.innerHTML = `Hana is the design system of <a href="../">Mökin vedet v2</a>. Every value on this site is read live from <a href="${SRC}design-system/tokens.json">tokens.json</a> and the app's own CSS.`;
     doc.appendChild(foot);
   }
 
