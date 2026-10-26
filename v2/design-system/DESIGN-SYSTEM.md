@@ -15,8 +15,12 @@ before you add or change anything that is drawn on screen.
 | Figma | not yet made | Will be derived from `tokens.json` (variables) and this file (components). Code wins if they disagree. |
 
 Token naming: each leaf key in `tokens.json` is the CSS custom property name
-without `--`. `color.ground` is `--ground`, `space.space-16` is `--space-16`.
-The groups only organise. `{color.ink}` is an alias and becomes `var(--ink)`.
+without `--`. `color.bg-page` is `--bg-page`, `space.space-16` is `--space-16`.
+The groups only organise. `{color.text}` is an alias and becomes `var(--text)`.
+Colours are named by role, then qualifier: `bg-*` fills an area, `text-*` is
+read, `border`, `border-locked` and `shadow` draw structure, `icon-*` is a
+glyph, `accent` is the one highlight fill. Pick by what you paint: a border
+uses `--border` even though it is the same hex as `--text` today.
 
 ## Workflow for a change
 
@@ -37,17 +41,17 @@ The groups only organise. `{color.ink}` is an alias and becomes `var(--ink)`.
 
 ## Foundations
 
-**Look.** A pale green page ground (`--ground`) with white cards (`--card`)
-floating on it. Every card has a 2px ink border, a 10px radius and, if it is
-interactive or current, a hard ink drop shadow offset by `--shadow-offset`.
+**Look.** A pale green page (`--bg-page`) with white cards (`--bg-card`)
+floating on it. Every card has a 2px `--border`, a 10px radius and, if it is
+interactive or current, a hard `--shadow` offset by `--shadow-offset`.
 One soft accent fill (`--accent`, lavender) for the thing to press and for
-progress; one dark green (`--accent-ink`) for small uppercase labels. No red,
+progress; one dark green (`--text-accent`) for small uppercase labels. No red,
 no alarm colours: Huomio is a note, not an error.
 
 **Type.** Two families. `--font-head` (Space Grotesk) for headings, card titles
 and buttons; `--font-body` (Manrope) for everything you read and for labels.
 Sizes are tokens: heading 25, title 19, button 19, body 17, label 14. Labels
-are uppercase, weight 800, letter-spacing 0.06em, colour `--accent-ink`.
+are uppercase, weight 800, letter-spacing 0.06em, colour `--text-accent`.
 Line-heights are unitless ems snapped to whole pixels with `round(1.5em, 1px)`.
 
 **Spacing.** An 8px grid: `--space-8`, `-16`, `-24`, `-32`, `-40`, `-64`.
@@ -55,7 +59,7 @@ Line-heights are unitless ems snapped to whole pixels with `round(1.5em, 1px)`.
 a pill or counter. Alike elements get the same value. Card padding is 16,
 gaps between cards 16, between groups 24.
 
-**Lines and shape.** `--border` (2px) is every border, everywhere, including
+**Lines and shape.** `--border-width` (2px) is every border, everywhere, including
 the current card and the modal; the current card is set apart by colour and
 shadow, never by a thicker border. No fractional widths or positions. Radii:
 `--radius` (10) for cards and buttons, `--radius-sm` (8) for badges,
@@ -71,19 +75,19 @@ Class names are BEM-ish: `.block`, `.block__element`, `.is-state`.
 
 | Component | Class | Notes |
 |---|---|---|
-| App bar | `.app-bar`, `.app-bar__title`, `.icon-btn` | 64px, white, ink bottom border. Title is the page `<h1>`. Back button 44×44. |
-| Process card (home) | `.card-project`, `__title`, `__count` (`.is-complete`) | Whole card is a button. Presses into its shadow on `:active`. Counter fills with accent when complete. |
+| App bar | `.app-bar`, `.app-bar__title`, `.icon-btn` | 64px, white, 2px bottom border. Title is the page `<h1>`. Back button 44×44. |
+| Process card (home) | `.card-project`, `__title`, `__count` | Whole card is a button. Presses into its shadow on `:active`. The counter shows steps done, e.g. `3/12`; a finished process resets to `0/n` when its modal closes, so there is no complete state. |
 | Contact box | `.contact-box`, `__title`, `__text` | Pinned to the bottom of home. No shadow (not interactive). |
-| Progress bar | `.progress`, `__count`, `__track`, `__fill` | Sticky at the top of a process, full bleed, ground-coloured. Fill is ink. |
+| Progress bar | `.progress`, `__count`, `__track`, `__fill` | Sticky at the top of a process, full bleed, page-coloured. Fill is `--border`. |
 | Description / tools | `.page-description`, `.page-tools`, `__label`, `__row` | Intro text and the tools box above the steps. |
-| Phase | `.step-group`, `__header`, `__label` (`<h2>`), `__name` | Label (VAIHE 1) above a 25px heading on an ink rule. |
+| Phase | `.step-group`, `__header`, `__label` (`<h2>`), `__name` | Label (VAIHE 1) above a 25px heading on a 2px rule. |
 | Step card | `.card-task` + `.is-current` / `.is-done` / `.is-locked` | See states below. |
 | Step badge | `.task-badge`, `__num`, `.check-icon` | 34×34. Number, or a check when done. |
 | Step head | `.card-task__head`, `__titlerow`, `__title`, `__tag` | A `<button>` on done steps (tap to rewind), a `<div>` otherwise. |
 | Step body | `.card-task__body`, `__section-label`, `__section-text` | Ohjeet, Työkalut, Liitteet sections. |
-| Photo thumbnail | `.attachments-grid`, `.attachment-thumb` | 94×94 with an ink "AVAA" bar drawn by `::after`. |
+| Photo thumbnail | `.attachments-grid`, `.attachment-thumb` | 94×94 with a dark "AVAA" bar drawn by `::after`. |
 | Huomio | `.alert-box`, `__title`, `__text` | Pale yellow note; the title rides the top border as a tab. |
-| Primary button | `.btn-complete` (in `.step-actions`), `.modal__btn` | Accent fill, ink border and shadow, presses on `:active`. Full width. |
+| Primary button | `.btn-complete` (in `.step-actions`), `.modal__btn` | Accent fill, border and shadow, presses on `:active`. Full width. |
 | Lightbox | `.lightbox`, `.lightbox-close` | Full-screen photo on `--overlay`. |
 | Completion modal | `.modal`, `__box`, `__badge`, `__text`, `__note`, `__btn` | Opens when the last step is marked done; closing resets the process. |
 
@@ -93,23 +97,23 @@ A process is a linear sequence. Exactly one step is current.
 
 | State | Background | Border | Shadow | Badge | Body |
 |---|---|---|---|---|---|
-| `is-current` | `--card` | 2px solid ink | 5px accent | accent fill, number | open, with the primary button |
-| `is-done` | `--done-bg` | 2px solid ink | none | accent fill, check | open; head rewinds |
-| `is-locked` | `--locked-bg` | 2px dashed `--locked-line` | none | transparent, dashed, `--muted` | hidden; padlock in the title row |
+| `is-current` | `--bg-card` | 2px solid `--border` | 5px accent | accent fill, number | open, with the primary button |
+| `is-done` | `--bg-done` | 2px solid `--border` | none | accent fill, check | open; head rewinds |
+| `is-locked` | `--bg-locked` | 2px dashed `--border-locked` | none | transparent, dashed, `--text-muted` | hidden; padlock in the title row |
 
 The words Valmis / Kesken are `.sr-only` (screen readers still get them); the
-locked step shows a padlock (`--lock`) instead of the word Lukittu.
+locked step shows a padlock (`--icon-lock`) instead of the word Lukittu.
 
 ## Accessibility rules
 
 Target WCAG 2.1 AA, checked with axe-core.
 
-- **Never dim with `opacity`.** Muted things use explicit colours (`--muted`).
+- **Never dim with `opacity`.** Muted things use explicit colours (`--text-muted`).
 - Text pairs ≥ 4.5:1; the weakest today is the small uppercase label on the
   done card at 4.6:1. The locked card's dashed border is its only outline and
-  must stay ≥ 3:1. `--accent` is a fill under dark text; `--accent-ink` is for
+  must stay ≥ 3:1. `--accent` is a fill under dark text; `--text-accent` is for
   text. They do not follow each other: check both after a retint.
-- **Focus ring:** 2px `--ink` `:focus-visible` outline with a 2px gap; white
+- **Focus ring:** 2px `--border` `:focus-visible` outline with a 2px gap; white
   inside the lightbox; around the whole card for a done step's head.
 - Overlays (`.lightbox`, `.modal__box`) are `role="dialog"` + `aria-modal`, take
   focus on open, trap Tab, and return focus on close.
@@ -121,7 +125,7 @@ Target WCAG 2.1 AA, checked with axe-core.
 | Do | Don't |
 |---|---|
 | Use `var(--token)` for every colour, size, radius and space | Write a raw hex or px value in a component |
-| Keep borders at `--border` | Make a border thicker to show state |
+| Keep borders at `--border-width` | Make a border thicker to show state |
 | Show state with background, shadow, badge and the open body | Use opacity, or red, to show state |
 | Put new spacing on the 8px grid | Use 4px except label→text and pill insets |
 | Add a `$description` to every new token | Edit `tokens.css` by hand |
@@ -135,7 +139,7 @@ a design decision first.
 
 | Value | Where |
 |---|---|
-| `#ffffff` text | Huomio tab (`.alert-box__title`) — same as `--card` |
+| `#ffffff` text | Huomio tab (`.alert-box__title`) — same as `--bg-card` |
 | 14px, 16px font size | thumbnail AVAA bar, step badge number |
 | 700 / 800 font weight | labels, counters, badges (no weight token for labels yet) |
 | 6px radius | Huomio tab |

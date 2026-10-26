@@ -3,19 +3,20 @@
 
 :root {
   /* --- color --- */
-  --ground: #f3fbe7;  /* The page itself; cards float on this. */
-  --card: #ffffff;  /* Task cards, tool box, modal, home cards. */
-  --appbar: #ffffff;  /* The top bar. */
-  --done-bg: #e7f7cf;  /* A completed step recedes into a tint. */
-  --locked-bg: #e7f7cf;  /* So does a step you have not reached. */
-  --alert-bg: #fefed8;  /* Huomio. */
-  --ink: #0f111e;  /* Structure: every border, every drop shadow, the progress fill, the bar across a photo. */
-  --text: var(--ink);  /* What you read. Follows ink; give it its own hex to pull them apart. */
-  --muted: #4a5a36;  /* The locked step's title and number. */
-  --locked-line: var(--muted);  /* The dashed border around a locked card. The only outline that card has, so it must stay above 3:1. */
-  --lock: #5f7d46;  /* The padlock. Filled, so lighter than muted to keep the weight down. #6d8a52 is the lightest that clears 3:1 on the locked card. */
+  --bg-page: #f3fbe7;  /* The page itself; cards float on this. */
+  --bg-card: #ffffff;  /* Task cards, tool box, modal, home cards. */
+  --bg-appbar: #ffffff;  /* The top bar. */
+  --bg-done: #e7f7cf;  /* A completed step recedes into a tint. */
+  --bg-locked: #e7f7cf;  /* So does a step you have not reached. */
+  --bg-note: #fefed8;  /* The Huomio note. */
+  --text: #0f111e;  /* What you read. */
+  --text-muted: #4a5a36;  /* The locked step's title and number. */
+  --text-accent: #467a26;  /* Small uppercase labels (VAIHE 1, OHJEET), and the Huomio tab's fill. Darker than accent because small text needs more contrast than a fill. Does not follow accent; check both if you retint. */
+  --border: var(--text);  /* Every 2px border and the focus ring. Also fills the progress bar and the AVAA bar across a photo. Shares the text colour; give it its own hex to pull them apart. */
+  --border-locked: var(--text-muted);  /* The dashed border around a locked card. The only outline that card has, so it must stay above 3:1. */
+  --shadow: var(--border);  /* Every hard drop shadow. */
+  --icon-lock: #5f7d46;  /* The padlock. Filled, so lighter than text-muted to keep the weight down. #6d8a52 is the lightest that clears 3:1 on the locked card. */
   --accent: #dfe1ff;  /* A FILL that always carries dark text on top, so bright is the safe direction. */
-  --accent-ink: #467a26;  /* Darker sibling for small uppercase labels, which need more contrast than a fill. Does not follow accent; check both if you retint. */
   --overlay: rgba(10, 11, 20, 0.85);  /* Behind the lightbox and the completion modal. */
 
   /* --- font --- */
@@ -37,8 +38,8 @@
   --radius: 10px;  /* Cards, buttons, boxes. */
   --radius-sm: 8px;  /* Badges, thumbnails, counters, the progress track. */
   --radius-pill: 999px;
-  --border: 2px;  /* Every border, everywhere. Also the focus ring's width and gap. */
-  --shadow-offset: 3px;  /* Hard ink shadow, x and y. Buttons press into it on :active. */
+  --border-width: 2px;  /* Every border, everywhere. Also the focus ring's width and gap. */
+  --shadow-offset: 3px;  /* Hard drop shadow, x and y. Buttons press into it on :active. */
 
   /* --- space --- */
   --space-4: 4px;

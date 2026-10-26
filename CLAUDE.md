@@ -121,7 +121,7 @@ processes, lightbox and modal):
 - **Progress** is a `role="progressbar"` on `#progress-track`; the visible
   `0/5` count is `aria-hidden` so it is not read twice. Home counts carry a
   `.sr-only` "vaihetta valmiina".
-- **Focus ring** is a 2px ink outline with a 2px gap (`:focus-visible` in
+- **Focus ring** is a 2px `--border` outline with a 2px gap (`:focus-visible` in
   `stylesV2.css`), white in the lightbox, and drawn around the whole card for a
   done step's head. The browser default vanished against the 2px borders.
 - `document.title` follows the view.

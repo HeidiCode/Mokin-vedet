@@ -33,15 +33,15 @@
 
       <section>
         <h2>Never dim with opacity</h2>
-        <p>Opacity lowers contrast unpredictably and almost always pushes text below 4.5:1. A muted element gets an explicit colour token instead: the locked step uses <code>--muted</code> on <code>--locked-bg</code>.</p>
+        <p>Opacity lowers contrast unpredictably and almost always pushes text below 4.5:1. A muted element gets an explicit colour token instead: the locked step uses <code>--text-muted</code> on <code>--bg-locked</code>.</p>
       </section>
 
       <section>
         <h2>Focus</h2>
-        <p>Keyboard focus is a 2px <code>--ink</code> ring with a 2px gap, so it reads on every surface. Inside the lightbox the ring is white. A done step's whole card is ringed, not just its head.</p>
+        <p>Keyboard focus is a 2px <code>--border</code> ring with a 2px gap, so it reads on every surface. Inside the lightbox the ring is white. A done step's whole card is ringed, not just its head.</p>
         <div class="ds-example" data-title="Focus ring">
           <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
-            <button type="button" class="btn-complete" style="outline:var(--border) solid var(--ink);outline-offset:var(--border)">Merkitse valmiiksi</button>
+            <button type="button" class="btn-complete" style="outline:var(--border-width) solid var(--border);outline-offset:var(--border-width)">Merkitse valmiiksi</button>
           </div></div>
         </div>
       </section>

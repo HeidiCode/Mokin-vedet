@@ -214,7 +214,7 @@
       b.addEventListener("click", () => copy(pre.textContent, b));
       wrap.prepend(b);
       wrap.style.borderRadius = "var(--radius)";
-      wrap.style.border = "var(--border) solid var(--ink)";
+      wrap.style.border = "var(--border-width) solid var(--border)";
       wrap.style.overflow = "hidden";
     });
 
@@ -324,19 +324,19 @@
   /* Every text pair the app draws, and the boundaries that must stay visible.
      Ratios are computed from the live tokens, so a retint shows up here. */
   const PAIRS = [
-    ["text", "ground", "Body text on the page", 4.5],
-    ["text", "card", "Text on cards", 4.5],
-    ["text", "done-bg", "Text on a done step", 4.5],
+    ["text", "bg-page", "Body text on the page", 4.5],
+    ["text", "bg-card", "Text on cards", 4.5],
+    ["text", "bg-done", "Text on a done step", 4.5],
     ["text", "accent", "Text on the accent fill (buttons, badges)", 4.5],
-    ["text", "alert-bg", "Note text", 4.5],
-    ["accent-ink", "card", "Uppercase labels on cards", 4.5],
-    ["accent-ink", "done-bg", "Uppercase labels on a done step", 4.5],
-    ["accent-ink", "ground", "Phase labels on the page", 4.5],
-    ["card", "accent-ink", "Note tab (white on green)", 4.5],
-    ["card", "ink", "AVAA bar on photos", 4.5],
-    ["muted", "locked-bg", "Locked step title and number", 4.5],
-    ["locked-line", "locked-bg", "Dashed border, the locked card's only outline", 3],
-    ["lock", "locked-bg", "Padlock icon", 3],
+    ["text", "bg-note", "Note text", 4.5],
+    ["text-accent", "bg-card", "Uppercase labels on cards", 4.5],
+    ["text-accent", "bg-done", "Uppercase labels on a done step", 4.5],
+    ["text-accent", "bg-page", "Phase labels on the page", 4.5],
+    ["bg-card", "text-accent", "Note tab (white on green)", 4.5],
+    ["bg-card", "border", "AVAA bar on photos", 4.5],
+    ["text-muted", "bg-locked", "Locked step title and number", 4.5],
+    ["border-locked", "bg-locked", "Dashed border, the locked card's only outline", 3],
+    ["icon-lock", "bg-locked", "Padlock icon", 3],
   ];
 
   function renderContrast() {
@@ -347,7 +347,7 @@
           const ok = r >= min;
           return `<tr>
             <td>${min < 4.5
-              ? `<span class="ds-pair" style="background:var(--${bg})" aria-hidden="true"><span class="ds-pair__mark" style="border-color:var(--${fg});background:var(--${fg === "lock" ? fg : bg})"></span></span>`
+              ? `<span class="ds-pair" style="background:var(--${bg})" aria-hidden="true"><span class="ds-pair__mark" style="border-color:var(--${fg});background:var(--${fg === "icon-lock" ? fg : bg})"></span></span>`
               : `<span class="ds-pair" style="color:var(--${fg});background:var(--${bg})">Aa</span>`}</td>
             <td><code>--${fg}</code><br>on <code>--${bg}</code></td>
             <td>${esc(use)}</td>

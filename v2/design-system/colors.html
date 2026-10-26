@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Colour · Hana design system</title>
-<meta name="description" content="Hana's colour tokens: a pale green ground, white cards, ink for structure and one soft accent.">
+<meta name="description" content="Hana's colour tokens: a pale green page, white cards, dark lines for structure and one soft accent.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
@@ -23,24 +23,31 @@
     <article class="ds-doc">
       <p class="ds-eyebrow">Foundations</p>
       <h1>Colour</h1>
-      <p class="ds-lead">A pale green page with white cards floating on it, ink for every line, and one soft lavender accent for the thing to press. There is no red: nothing in this app is an error.</p>
+      <p class="ds-lead">A pale green page with white cards floating on it, dark lines for structure, and one soft lavender accent for the thing to press. There is no red: nothing in this app is an error.</p>
+      <p>Every colour is named by its role first, then a qualifier: <code>bg-</code> fills an area, <code>text-</code> is read, <code>border</code> and <code>shadow</code> draw structure, <code>icon-</code> is a glyph. Pick the token by what you are painting, not by its hex.</p>
 
       <section>
-        <h2>Surfaces</h2>
-        <p>The ground is the page. Cards sit on it in white. A step that is done, or not reached yet, recedes into a green tint so the current white card stands out.</p>
-        <div class="ds-swatches" data-ds="colors" data-names="ground card appbar done-bg locked-bg alert-bg"></div>
+        <h2>Background</h2>
+        <p>The page is pale green. Cards sit on it in white. A step that is done, or not reached yet, recedes into a green tint so the current white card stands out.</p>
+        <div class="ds-swatches" data-ds="colors" data-names="bg-page bg-card bg-appbar bg-done bg-locked bg-note"></div>
       </section>
 
       <section>
-        <h2>Ink and text</h2>
-        <p><code>--ink</code> is structure: borders, shadows, the progress fill. <code>--text</code> is what you read. Today they are the same colour under two names, so either can move without the other.</p>
-        <div class="ds-swatches" data-ds="colors" data-names="ink text muted locked-line lock"></div>
+        <h2>Text</h2>
+        <p><code>--text</code> is everything you read. <code>--text-muted</code> is the locked step, which recedes. <code>--text-accent</code> is for small uppercase labels, which need more contrast than the accent fill can give.</p>
+        <div class="ds-swatches" data-ds="colors" data-names="text text-muted text-accent"></div>
       </section>
 
       <section>
-        <h2>Accent</h2>
-        <p>Two accents that do not follow each other. <code>--accent</code> is a fill that always has dark text on top. <code>--accent-ink</code> is a text colour for small uppercase labels, which need more contrast than a fill.</p>
-        <div class="ds-swatches" data-ds="colors" data-names="accent accent-ink overlay"></div>
+        <h2>Border and shadow</h2>
+        <p><code>--border</code> draws every line and fills the progress bar; <code>--shadow</code> is every hard drop shadow. Today both follow <code>--text</code>, so one dark shade carries the whole page, but each can move on its own.</p>
+        <div class="ds-swatches" data-ds="colors" data-names="border shadow border-locked"></div>
+      </section>
+
+      <section>
+        <h2>Icon, accent and overlay</h2>
+        <p><code>--accent</code> is a fill that always has dark text on top. <code>--overlay</code> darkens the page behind the lightbox and the completion modal.</p>
+        <div class="ds-swatches" data-ds="colors" data-names="icon-lock accent overlay"></div>
       </section>
 
       <section>
@@ -49,9 +56,9 @@
           <div class="ds-do">
             <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
             <ul>
-              <li>Use a token for every colour: <code>var(--card)</code>, never <code>#ffffff</code>.</li>
+              <li>Use a token for every colour: <code>var(--bg-card)</code>, never <code>#ffffff</code>.</li>
               <li>Show state with background, shadow and badge together.</li>
-              <li>Put dark text on <code>--accent</code>; use <code>--accent-ink</code> for labels.</li>
+              <li>Put dark text on <code>--accent</code>; use <code>--text-accent</code> for labels.</li>
               <li>Check contrast on the <a href="accessibility.html">accessibility page</a> after any retint.</li>
             </ul>
           </div>
