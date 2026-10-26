@@ -27,7 +27,7 @@
 <div id="app">
   <header class="app-bar">
     <button class="icon-btn" id="back-btn" aria-label="Takaisin" hidden></button>
-    <h1 class="app-bar__title" id="page-title">Mökin vedet</h1>
+    <h1 class="app-bar__title" id="page-title" tabindex="-1">Mökin vedet</h1>
   </header>
 
   <main id="home-view">
@@ -43,14 +43,19 @@
 
   <main id="project-view" hidden>
     <div class="progress" id="progress">
-      <span class="progress__count" id="progress-count">0/0</span>
-      <div class="progress__track"><div class="progress__fill" id="progress-fill"></div></div>
+      <span class="progress__count" id="progress-count" aria-hidden="true">0/0</span>
+      <div class="progress__track" id="progress-track" role="progressbar" aria-label="Edistyminen"
+           aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><div class="progress__fill" id="progress-fill"></div></div>
     </div>
     <p class="page-description" id="project-description"></p>
     <div class="page-tools" id="project-tools"></div>
     <div id="step-groups"></div>
   </main>
 </div>
+
+<!-- Says out loud what a tap just did (step marked done, step rewound), since
+     the re-render itself is silent to a screen reader. -->
+<p class="sr-only" id="live-status" role="status" aria-live="polite"></p>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
      aria-label="Kuva suurennettuna" hidden>
@@ -420,6 +425,8 @@ const lightboxClose = document.getElementById("lightbox-close");
 const progress = document.getElementById("progress");
 const progressCount = document.getElementById("progress-count");
 const progressFill = document.getElementById("progress-fill");
+const progressTrack = document.getElementById("progress-track");
+const liveStatus = document.getElementById("live-status");
 const completeModal = document.getElementById("complete-modal");
 const completeClose = document.getElementById("complete-close");
 
@@ -460,7 +467,7 @@ function renderHome() {
     return `
     <button class="card-project" data-process="${id}">
       <span class="card-project__title">${process.title}</span>
-      <span class="card-project__count${complete ? " is-complete" : ""}">${done}/${total}</span>
+      <span class="card-project__count${complete ? " is-complete" : ""}">${done}/${total}<span class="sr-only"> vaihetta valmiina</span></span>
       ${icons.chevronRight}
     </button>
   `;
@@ -482,9 +489,11 @@ function renderTask(task, num, total, status) {
     : `<span class="card-task__tag sr-only">${tagText}</span>`;
   const rewindable = status === "done";
   const headTag = rewindable ? "button" : "div";
+  /* The current step's head takes focus (not Tab) after each advance or
+     rewind, so keyboard and screen reader users land on the step they are on. */
   const headAttrs = rewindable
     ? ` type="button" data-rewind="${num}" title="Palaa tähän vaiheeseen"`
-    : "";
+    : status === "current" ? ` tabindex="-1"` : "";
 
   const body = showBody ? `
       <div class="card-task__body">
@@ -578,6 +587,9 @@ function renderProject(id) {
 
   progressCount.textContent = done + "/" + total;
   progressFill.style.width = total ? (done / total * 100) + "%" : "0%";
+  progressTrack.setAttribute("aria-valuemax", total);
+  progressTrack.setAttribute("aria-valuenow", done);
+  progressTrack.setAttribute("aria-valuetext", done + "/" + total + " vaihetta valmiina");
   progress.classList.toggle("is-complete", total > 0 && done === total);
 }
 
@@ -593,8 +605,22 @@ function stepBy(delta) {
   if (delta > 0 && total > 0 && next === total) {
     openCompleteModal();
   } else {
-    scrollToCurrent();
+    if (delta > 0) announce("Vaihe " + next + " valmis. " + next + "/" + total + ".");
+    focusCurrent();
   }
+}
+
+/* Re-rendering throws away the button that was just pressed, which would drop
+   focus to the top of the page. Hand it to the new current step instead. */
+function focusCurrent() {
+  const head = stepGroups.querySelector(".card-task.is-current .card-task__head");
+  if (head) head.focus({ preventScroll: true });
+  scrollToCurrent();
+}
+
+function announce(text) {
+  liveStatus.textContent = "";
+  setTimeout(() => { liveStatus.textContent = text; }, 50);
 }
 
 /* Completion modal — shown when the final step is marked done. Closing it resets
@@ -622,7 +648,8 @@ function setDoneAndRender(n) {
   const total = processTotal(processes[currentProcessId]);
   setDone(currentProcessId, Math.min(Math.max(n, 0), total));
   renderProject(currentProcessId);
-  scrollToCurrent();
+  announce("Palattu vaiheeseen " + (n + 1) + ".");
+  focusCurrent();
 }
 function scrollToCurrent() {
   const cur = stepGroups.querySelector(".card-task.is-current");
@@ -632,12 +659,17 @@ function scrollToCurrent() {
 }
 
 function showHome() {
+  const cameFrom = currentProcessId;
   currentProcessId = null;
   renderHome(); // refresh the per-process done/total counts
   homeView.hidden = false;
   projectView.hidden = true;
   backBtn.hidden = true;
   pageTitle.textContent = "Mökin vedet";
+  document.title = "Mökin vedet";
+  // Back on the list, focus the card you left from rather than the page top.
+  const card = cameFrom && processList.querySelector(`[data-process="${cameFrom}"]`);
+  if (card) card.focus();
 }
 
 function showProject(id) {
@@ -647,8 +679,11 @@ function showProject(id) {
   projectView.hidden = false;
   backBtn.hidden = false;
   pageTitle.textContent = processes[id].title;
+  document.title = processes[id].title + " – Mökin vedet";
   projectView.scrollTop = 0;
   window.scrollTo(0, 0);
+  // The card that was pressed is gone; start from the new page's title.
+  pageTitle.focus();
 }
 
 /* What was focused when the lightbox opened, so closing can hand focus back
