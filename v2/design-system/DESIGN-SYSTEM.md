@@ -72,7 +72,7 @@ Class names are BEM-ish: `.block`, `.block__element`, `.is-state`.
 | Component | Class | Notes |
 |---|---|---|
 | App bar | `.app-bar`, `.app-bar__title`, `.icon-btn` | 64px, white, ink bottom border. Title is the page `<h1>`. Back button 44×44. |
-| Process card (home) | `.card-project`, `__title`, `__count` (`.is-complete`) | Whole card is a button. Presses into its shadow on `:active`. Counter fills with accent when complete. |
+| Process card (home) | `.card-project`, `__title`, `__count` | Whole card is a button. Presses into its shadow on `:active`. The counter shows steps done, e.g. `3/12`; a finished process resets to `0/n` when its modal closes, so there is no complete state. |
 | Contact box | `.contact-box`, `__title`, `__text` | Pinned to the bottom of home. No shadow (not interactive). |
 | Progress bar | `.progress`, `__count`, `__track`, `__fill` | Sticky at the top of a process, full bleed, ground-coloured. Fill is ink. |
 | Description / tools | `.page-description`, `.page-tools`, `__label`, `__row` | Intro text and the tools box above the steps. |
