@@ -11,6 +11,7 @@ before you add or change anything that is drawn on screen.
 | Tokens as CSS | `v2/themes/tokens.css` | **Generated.** Never edit. Run `python3 v2/design-system/build-tokens.py`; `--check` fails if it is stale. |
 | Components | `v2/themes/stylesV2.css` | Uses tokens only, through `var(--name)`. |
 | Markup and behaviour | `v2/index.html` | The renderer builds every component; class names below are the contract. |
+| Documentation site | `v2/design-system/*.html` (live at `/v2/design-system/`) | For people. Previews use the real CSS and read token values live from `tokens.json`, so they cannot drift. Shared frame in `assets/ds.css` and `assets/ds.js`. |
 | Figma | not yet made | Will be derived from `tokens.json` (variables) and this file (components). Code wins if they disagree. |
 
 Token naming: each leaf key in `tokens.json` is the CSS custom property name
@@ -27,7 +28,11 @@ The groups only organise. `{color.ink}` is an alias and becomes `var(--ink)`.
 3. Changing a component: edit `stylesV2.css`, referencing tokens. If you need a
    number that is not a token, either reuse the nearest token or add one; do
    not write a raw value.
-4. Before a PR: screenshot home, a process mid-way, and the completion modal at
+4. A new component, or a changed one, also gets its page on the documentation
+   site: copy an existing component page, keep the sections (Examples,
+   Anatomy, Best practices, Accessibility, Tokens) and add it to `NAV` in
+   `assets/ds.js`. Write icons as `<i data-icon="name"></i>`.
+5. Before a PR: screenshot home, a process mid-way, and the completion modal at
    400px wide, and compare with `main`. Re-run axe-core after any retint.
 
 ## Foundations

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spacing and shape · Metsä design system</title>
+<meta name="description" content="Metsä's 8px spacing grid, 2px borders, radii and hard shadows.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Foundations</p>
+      <h1>Spacing and shape</h1>
+      <p class="ds-lead">Everything sits on an 8px grid, every line is 2px, and every edge lands on a whole pixel. Cards are softly rounded and cast a hard ink shadow when they can be pressed.</p>
+
+      <section>
+        <h2>Spacing scale</h2>
+        <p>Use 8, 16 and 24 for almost everything. 4px is reserved for the gap between a label and its text, and for the inset of a pill or counter. Alike elements get the same value.</p>
+        <div class="ds-card" data-ds="space"></div>
+        <h3>In the app</h3>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Where</th><th>Space</th></tr></thead>
+            <tbody>
+              <tr><td>Padding inside a card</td><td><code>--space-16</code></td></tr>
+              <tr><td>Gap between cards</td><td><code>--space-16</code></td></tr>
+              <tr><td>Gap between phases, and after the progress bar</td><td><code>--space-24</code></td></tr>
+              <tr><td>Badge to title</td><td><code>--space-16</code></td></tr>
+              <tr><td>Label to its text</td><td><code>--space-4</code></td></tr>
+              <tr><td>Between photo thumbnails</td><td><code>--space-8</code></td></tr>
+              <tr><td>Page side margin</td><td><code>--space-16</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Borders</h2>
+        <p><code>--border</code> is 2px, on every card, button, badge and box, including the current step and the modal. State is never shown with a thicker line. The locked step is the one exception in style, not width: its border is dashed.</p>
+        <div class="ds-grid">
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius)"></div><code>solid, --ink</code></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);border-style:dashed;border-color:var(--locked-line);background:var(--locked-bg)"></div><code>dashed, --locked-line</code></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Radius</h2>
+        <div class="ds-grid">
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius)"></div><code>--radius</code><span>Cards, buttons, boxes</span></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius-sm)"></div><code>--radius-sm</code><span>Badges, thumbnails, counters</span></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius-pill);height:48px"></div><code>--radius-pill</code><span>Pills</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Shadow</h2>
+        <p>A hard, unblurred shadow offset by <code>--shadow-offset</code> marks something you can press. On press, the element moves into its shadow. The current step and the modal cast a wider shadow in the accent colour instead.</p>
+        <div class="ds-grid">
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--ink)"></div><code>3px ink</code><span>Buttons, process cards</span></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);box-shadow:5px 5px 0 var(--accent)"></div><code>5px accent</code><span>Current step</span></div>
+          <div class="ds-shape"><div class="ds-shape__box" style="border-radius:var(--radius);background:var(--done-bg)"></div><code>none</code><span>Done and locked steps, static boxes</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Pixel precision</h2>
+        <ul class="ds-list">
+          <li>No fractional widths or positions: no 1.5px lines, no half-pixel offsets.</li>
+          <li>A box whose width follows its text, like the <code>3/12</code> counter, gets a fixed <code>min-width</code> so its border never falls between two pixels.</li>
+          <li>Measure in a browser, not only in the CSS.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <div class="ds-table-wrap" data-ds="token-table" data-groups="shape space"></div>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

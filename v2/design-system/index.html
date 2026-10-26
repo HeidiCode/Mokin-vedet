@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction · Metsä design system</title>
+<meta name="description" content="Metsä is the design system of Mökin vedet v2: colour, type, spacing and components for a step-by-step guide to a cottage's water system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Introduction</p>
+      <h1>Metsä</h1>
+      <p class="ds-lead">Metsä is the design system behind Mökin vedet v2, a small web app that walks the family through opening and closing a summer cottage's water system, one step at a time. It collects the colours, type, spacing and components the app is built from, and the reasons behind them.</p>
+
+      <section>
+        <h2>What it is for</h2>
+        <p>The app is used at the cottage: outdoors, on a phone, often with cold or busy hands, by people who do this twice a year and do not remember the steps. Every decision in Metsä serves that moment. The same system is meant for three readers:</p>
+        <div class="ds-grid">
+          <div class="ds-card">
+            <span class="ds-tag">Design</span>
+            <h3>Designers</h3>
+            <p>Foundations and components with the reasoning behind them, and a Figma library built from the same tokens.</p>
+            <p><span class="ds-tag ds-tag--soon">Figma · soon</span></p>
+          </div>
+          <div class="ds-card">
+            <span class="ds-tag">Code</span>
+            <h3>Developers</h3>
+            <p>Two stylesheets, plain HTML and no build step. Every example on this site shows its markup and can be copied.</p>
+          </div>
+          <div class="ds-card">
+            <span class="ds-tag">Agents</span>
+            <h3>AI agents</h3>
+            <p>A machine-readable token file and a written rulebook, so an agent can make a change that fits without guessing.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Principles</h2>
+        <p>Metsä grew out of user testing on the first version of the app. Each principle answers something testers ran into.</p>
+        <ol class="ds-steps">
+          <li><div><strong>Readable at arm's length</strong>Body text is 17px and headings 25px. Testers found the first version too small to read at the cottage.</div></li>
+          <li><div><strong>One thing at a time</strong>Only the current step is white, raised and open. Done and locked steps recede, so the eye lands where the work is.</div></li>
+          <li><div><strong>Calm, not alarming</strong>No red. A warning is a note to read, not an error, and state is shown with fill, badge and shape rather than colour alone.</div></li>
+          <li><div><strong>Show what can be tapped</strong>Photos carry an AVAA bar, buttons have hard shadows and press in. Testers did not realise the photos opened.</div></li>
+          <li><div><strong>Say what happens</strong>Buttons are written out in words. The completion modal says that closing it starts the guide again.</div></li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>How to use it</h2>
+        <p>Load the fonts and the two stylesheets, tokens first. Components are plain HTML with the class names shown on each component page.</p>
+        <pre data-copy><code>&lt;link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&amp;family=Space+Grotesk:wght@400..700&amp;display=swap" rel="stylesheet"&gt;
+      &lt;link rel="stylesheet" href="themes/tokens.css"&gt;
+      &lt;link rel="stylesheet" href="themes/stylesV2.css"&gt;</code></pre>
+        <p>To change a value, edit <code>tokens.json</code> and run <code>python3 v2/design-system/build-tokens.py</code>. Never edit <code>tokens.css</code> by hand, and never write a raw colour or size into a component: reach for a token.</p>
+        <p>The app's interface is in Finnish, so the examples on this site are too.</p>
+      </section>
+
+      <section>
+        <h2>Sources of truth</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>File</th><th>What it holds</th></tr></thead>
+            <tbody>
+              <tr><td><a href="https://github.com/HeidiCode/Mokin-vedet/blob/main/v2/design-system/tokens.json"><code>tokens.json</code></a></td><td>Every token, with a description of where it is used. The one place a value is written. W3C Design Tokens format.</td></tr>
+              <tr><td><a href="https://github.com/HeidiCode/Mokin-vedet/blob/main/v2/themes/tokens.css"><code>tokens.css</code></a></td><td>The same tokens as CSS custom properties. Generated, never edited.</td></tr>
+              <tr><td><a href="https://github.com/HeidiCode/Mokin-vedet/blob/main/v2/themes/stylesV2.css"><code>stylesV2.css</code></a></td><td>Every component. References tokens only.</td></tr>
+              <tr><td><a href="https://github.com/HeidiCode/Mokin-vedet/blob/main/v2/design-system/DESIGN-SYSTEM.md"><code>DESIGN-SYSTEM.md</code></a></td><td>The rulebook for agents and developers: foundations, components, do and don't.</td></tr>
+              <tr><td>Figma <span class="ds-tag ds-tag--soon">Soon</span></td><td>Variables and components derived from the tokens. When code and Figma disagree, code wins.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

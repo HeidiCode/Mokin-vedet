@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Step card · Metsä design system</title>
+<meta name="description" content="The step card: one step of a process, in three states — current, done and locked.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Step card</h1>
+      <p class="ds-lead">The heart of the app. A process is a straight line of steps and exactly one is current. The step card shows each step in one of three states, and only the current one asks for attention.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Current">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="task-list">
+              <div class="card-task is-current">
+                <div class="card-task__head">
+                  <span class="task-badge">
+                    <span class="task-badge__num">2</span>
+                    <i data-icon="check"></i>
+                  </span>
+                  <span class="card-task__titlerow">
+                    <span class="card-task__title">Avaa vesimittarin pääsulku</span>
+                    <span class="card-task__tag sr-only">Kesken</span>
+                  </span>
+                </div>
+                <div class="card-task__body">
+                  <div>
+                    <p class="card-task__section-label">Ohjeet</p>
+                    <p class="card-task__section-text">Ennen vesimittaria oleva sulku: musta pystyputki, jossa sinistä. Käännä vastapäivään auki.</p>
+                  </div>
+                  <div class="step-actions">
+                    <button type="button" class="btn-complete">Merkitse valmiiksi</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Done">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="task-list">
+              <div class="card-task is-done">
+                <button class="card-task__head" type="button" title="Palaa tähän vaiheeseen">
+                  <span class="task-badge">
+                    <span class="task-badge__num">1</span>
+                    <i data-icon="check"></i>
+                  </span>
+                  <span class="card-task__titlerow">
+                    <span class="card-task__title">Avaa vesiputki rannasta</span>
+                    <span class="card-task__tag sr-only">Valmis</span>
+                  </span>
+                </button>
+                <div class="card-task__body">
+                  <div>
+                    <p class="card-task__section-label">Ohjeet</p>
+                    <p class="card-task__section-text">Mene rantaan ja avaa siellä oleva vesisulku.</p>
+                  </div>
+                  <div>
+                    <p class="card-task__section-label">Työkalut</p>
+                    <p class="card-task__section-text">iso lenkkiavain</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Locked">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="task-list">
+              <div class="card-task is-locked">
+                <div class="card-task__head">
+                  <span class="task-badge">
+                    <span class="task-badge__num">3</span>
+                    <i data-icon="check"></i>
+                  </span>
+                  <span class="card-task__titlerow">
+                    <span class="card-task__title">Tarkista: tuleeko vesi normaalisti</span>
+                    <span class="card-task__tag"><i data-icon="lock"></i></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="In a sequence">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="task-list">
+              <div class="card-task is-done">
+                <button class="card-task__head" type="button" title="Palaa tähän vaiheeseen">
+                  <span class="task-badge">
+                    <span class="task-badge__num">1</span>
+                    <i data-icon="check"></i>
+                  </span>
+                  <span class="card-task__titlerow">
+                    <span class="card-task__title">Avaa vesiputki rannasta</span>
+                    <span class="card-task__tag sr-only">Valmis</span>
+                  </span>
+                </button>
+              </div>
+              <div class="card-task is-current">
+                <div class="card-task__head">
+                  <span class="task-badge">
+                    <span class="task-badge__num">2</span>
+                    <i data-icon="check"></i>
+                  </span>
+                  <span class="card-task__titlerow">
+                    <span class="card-task__title">Avaa vesimittarin pääsulku</span>
+                    <span class="card-task__tag sr-only">Kesken</span>
+                  </span>
+                </div>
+                <div class="card-task__body">
+                  <div>
+                    <p class="card-task__section-label">Ohjeet</p>
+                    <p class="card-task__section-text">Ennen vesimittaria oleva sulku: musta pystyputki, jossa sinistä. Käännä vastapäivään auki.</p>
+                  </div>
+                  <div class="step-actions">
+                    <button type="button" class="btn-complete">Merkitse valmiiksi</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-task is-locked">
+                <div class="card-task__head">
+                  <span class="task-badge">
+                    <span class="task-badge__num">3</span>
+                    <i data-icon="check"></i>
+                  </span>
+                  <span class="card-task__titlerow">
+                    <span class="card-task__title">Tarkista: tuleeko vesi normaalisti</span>
+                    <span class="card-task__tag"><i data-icon="lock"></i></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>States</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>State</th><th>Card</th><th>Badge</th><th>Body</th></tr></thead>
+            <tbody>
+              <tr><td><code>.is-current</code></td><td>White, solid ink border, 5px accent shadow</td><td>Accent fill, number</td><td>Open, with the primary button</td></tr>
+              <tr><td><code>.is-done</code></td><td>Green tint, solid ink border, no shadow</td><td>Accent fill, check</td><td>Open; tap the head to rewind</td></tr>
+              <tr><td><code>.is-locked</code></td><td>Green tint, dashed muted border, no shadow</td><td>Transparent, dashed, muted number</td><td>Hidden; padlock in the title row</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.task-list</code></td><td>The steps of one phase, 16px apart.</td></tr>
+              <tr><td><code>.card-task</code></td><td>The card. Add one state class: <code>.is-current</code>, <code>.is-done</code> or <code>.is-locked</code>.</td></tr>
+              <tr><td><code>.card-task__head</code></td><td>Badge and title row. A <code>&lt;button&gt;</code> on a done step, which rewinds to it; a <code>&lt;div&gt;</code> otherwise.</td></tr>
+              <tr><td><code>.task-badge</code></td><td>34 × 34 number badge; shows a check instead of the number when done.</td></tr>
+              <tr><td><code>.card-task__title</code></td><td>Step title in Space Grotesk at the title size. Long words wrap.</td></tr>
+              <tr><td><code>.card-task__tag</code></td><td>State in words for screen readers (<code>.sr-only</code>), or the padlock on a locked step.</td></tr>
+              <tr><td><code>.card-task__body</code></td><td>Ohjeet, Työkalut, Liitteet and Huomio sections. Shown for current and done steps only.</td></tr>
+              <tr><td><code>.step-actions</code></td><td>Holds the primary button. Current step only.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Write the title as an instruction: verb first, one action.</li>
+              <li>Keep exactly one current step.</li>
+              <li>Let people rewind by tapping a done step.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Show the body of a locked step; it would invite skipping ahead.</li>
+              <li>Tell states apart by colour alone; background, border, badge and the open body all change together.</li>
+              <li>Make the current card's border thicker.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>Valmis and Kesken are hidden visually but read out, so the state is never only visual.</li>
+              <li>The padlock is an image with <code>aria-label="Lukittu"</code>.</li>
+              <li>When a step is marked done, focus moves to the next current step.</li>
+              <li>The locked card's dashed border is its only outline and stays above 3:1.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="card done-bg locked-bg ink text muted locked-line lock accent accent-ink border radius radius-sm shadow-offset title-size title-weight label-size body-size space-16"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

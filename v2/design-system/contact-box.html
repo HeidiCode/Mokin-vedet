@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact box · Metsä design system</title>
+<meta name="description" content="The contact box at the foot of the home view: who to call for help.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Contact box</h1>
+      <p class="ds-lead">A quiet box pinned to the bottom of the home view that tells you who to call if something goes wrong. It has no shadow because it is not a control.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Default">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="contact-box">
+              <i data-icon="info"></i>
+              <div>
+                <p class="contact-box__title">Tarvitsetko apua?</p>
+                <p class="contact-box__text">Soita Heikille :)</p>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.contact-box</code></td><td>White box with a 2px ink border and no shadow. Pushed to the bottom of the home view.</td></tr>
+              <tr><td><code>.contact-box__title</code></td><td>Short question in Space Grotesk.</td></tr>
+              <tr><td><code>.contact-box__text</code></td><td>One line of body text.</td></tr>
+              <tr><td><code>.icon</code></td><td>The info icon, in <code>--accent-ink</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Keep it to a question and a name.</li>
+              <li>Use it once, on the home view.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Give it a shadow; that would make it look pressable.</li>
+              <li>Turn it into an error or alert box.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>The icon is decorative; the text says everything.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="card ink text accent-ink border radius space-16 space-8 space-4 body-size font-head"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

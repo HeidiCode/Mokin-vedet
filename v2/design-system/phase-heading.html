@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase heading · Metsä design system</title>
+<meta name="description" content="The phase heading: a label and heading that open each phase of a process.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Phase heading</h1>
+      <p class="ds-lead">A process is split into phases, such as the sauna cottage and the upper cottage. Each phase opens with an uppercase label and a 25px heading on a heavy rule, so a phase reads as a real division.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Label only">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="step-group__header">
+              <h2 class="step-group__label">Vaihe 1: Ranta ja saunamökki</h2>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Label and name">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="step-group__header">
+              <h2 class="step-group__label">Vaihe 2</h2>
+              <p class="step-group__name">Ylämökki</p>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.step-group</code></td><td>One phase: header plus its step list. 24px below.</td></tr>
+              <tr><td><code>.step-group__header</code></td><td>Header with a 2px ink rule along the bottom.</td></tr>
+              <tr><td><code>.step-group__label</code></td><td>The <code>&lt;h2&gt;</code>. Uppercase label style in <code>--accent-ink</code>.</td></tr>
+              <tr><td><code>.step-group__name</code></td><td>Optional heading in Space Grotesk at the heading size.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Number phases: Vaihe 1, Vaihe 2.</li>
+              <li>Name a phase by place, so people know where to walk.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Skip the label; it is the heading screen readers navigate by.</li>
+              <li>Nest phases inside phases.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>The label is the <code>&lt;h2&gt;</code> under the page's <code>&lt;h1&gt;</code>.</li>
+              <li>Steps are numbered across the whole process, not per phase, so the number always matches the progress bar.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="ink text accent-ink border heading-size heading-weight label-size space-4 space-8 space-16 space-24"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

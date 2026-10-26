@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typography · Metsä design system</title>
+<meta name="description" content="Metsä's type: Space Grotesk for headings and buttons, Manrope for reading, and a five-step scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Foundations</p>
+      <h1>Typography</h1>
+      <p class="ds-lead">Two families and five sizes. Space Grotesk gives headings, titles and buttons their character; Manrope carries everything you read. Sizes went up after testing: body is 17px.</p>
+
+      <section>
+        <h2>Families</h2>
+        <div class="ds-grid ds-grid--2">
+          <div class="ds-card ds-font-card" style="font-family:var(--font-head)">
+            <p class="ds-font-card__big">Aa</p>
+            <p class="ds-font-card__chars">ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ<br>abcdefghijklmnopqrstuvwxyzåäö<br>0123456789</p>
+            <p style="font-family:var(--font-body)"><strong>Space Grotesk</strong> · <code>--font-head</code><br>Headings, card titles, buttons. Weights 400–700.</p>
+          </div>
+          <div class="ds-card ds-font-card" style="font-family:var(--font-body)">
+            <p class="ds-font-card__big">Aa</p>
+            <p class="ds-font-card__chars">ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ<br>abcdefghijklmnopqrstuvwxyzåäö<br>0123456789</p>
+            <p><strong>Manrope</strong> · <code>--font-body</code><br>Body text and uppercase labels. Weights 400–800.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Type scale</h2>
+        <p>Each sample below is drawn with the app's own class, and its size, line height and weight are measured from the page.</p>
+        <div class="ds-card">
+          <div class="ds-type-row">
+            <div class="ds-type-meta"><strong>Heading</strong><code>--heading-size</code><code data-type-meta></code></div>
+            <div class="ds-type-sample" lang="fi"><p class="step-group__name">Vaihe 1: Ranta ja saunamökki</p></div>
+          </div>
+          <div class="ds-type-row">
+            <div class="ds-type-meta"><strong>Title</strong><code>--title-size</code><code data-type-meta></code></div>
+            <div class="ds-type-sample" lang="fi"><p class="card-task__title">Avaa vesimittarin pääsulku</p></div>
+          </div>
+          <div class="ds-type-row">
+            <div class="ds-type-meta"><strong>Button</strong><code>--btn-size</code><code data-type-meta></code></div>
+            <div class="ds-type-sample" lang="fi"><p style="font-family:var(--font-head);font-size:var(--btn-size);font-weight:var(--btn-weight);line-height:round(1.3em, 1px)">Merkitse valmiiksi</p></div>
+          </div>
+          <div class="ds-type-row">
+            <div class="ds-type-meta"><strong>Body</strong><code>--body-size</code><code data-type-meta></code></div>
+            <div class="ds-type-sample" lang="fi"><p class="card-task__section-text">Ennen vesimittaria oleva sulku: musta pystyputki, jossa sinistä. Käännä vastapäivään auki.</p></div>
+          </div>
+          <div class="ds-type-row">
+            <div class="ds-type-meta"><strong>Label</strong><code>--label-size</code><code data-type-meta></code></div>
+            <div class="ds-type-sample" lang="fi"><p class="card-task__section-label">Ohjeet</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Rules</h2>
+        <ul class="ds-list">
+          <li>Labels are uppercase Manrope at weight 800 with 0.06em letter-spacing, in <code>--accent-ink</code>.</li>
+          <li>Line heights are written in ems and snapped to whole pixels: <code>line-height: round(1.5em, 1px)</code>. They scale with the text but never land between pixels.</li>
+          <li>Headings tighten slightly: <code>letter-spacing: -0.02em</code> on the 25px heading, <code>-0.01em</code> in the app bar.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Pick a size from the scale with its token.</li>
+              <li>Keep instructions short and in plain Finnish.</li>
+              <li>Use a label above a block of text to name it: Ohjeet, Työkalut, Liitteet.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Go below 14px, even for small print.</li>
+              <li>Add a third font family.</li>
+              <li>Use uppercase for anything longer than a label.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <div class="ds-table-wrap" data-ds="token-table" data-groups="font type"></div>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

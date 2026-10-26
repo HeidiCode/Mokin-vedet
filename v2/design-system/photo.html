@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo and lightbox · Metsä design system</title>
+<meta name="description" content="Photo thumbnails with an AVAA bar, and the full-screen lightbox they open.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Photo and lightbox</h1>
+      <p class="ds-lead">Steps show the valve or switch to turn as photos. Each thumbnail carries an ink AVAA bar so it reads as something to open; opening it shows the photo full screen.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Thumbnails">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div>
+              <p class="card-task__section-label">Liitteet</p>
+              <div class="attachments-grid">
+                <button class="attachment-thumb" aria-label="Avaa kuva 1">
+                  <img src="../../images/saunamokki_vesitukki.jpg" alt="Saunamökin vesitukki">
+                </button>
+                <button class="attachment-thumb" aria-label="Avaa kuva 2">
+                  <img src="../../images/saunamokki_vesitukki_sulut.jpg" alt="Vesitukin sulut">
+                </button>
+                <button class="attachment-thumb" aria-label="Avaa kuva 3">
+                  <img src="../../images/ylamokki_boileri_virta_vipu.jpg" alt="Ylämökin boilerin virtavipu">
+                </button>
+              </div>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Lightbox">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="lightbox" role="dialog" aria-modal="true" aria-label="Kuva suurennettuna">
+              <button class="lightbox-close" aria-label="Sulje"><i data-icon="close"></i></button>
+              <img src="../../images/saunamokki_vesitukki.jpg" alt="Saunamökin vesitukki">
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.attachments-grid</code></td><td>Wrapping row of thumbnails, 8px apart.</td></tr>
+              <tr><td><code>.attachment-thumb</code></td><td>94 × 94 button with a 2px ink border. Its <code>::after</code> draws the AVAA bar, so the markup stays plain.</td></tr>
+              <tr><td><code>.lightbox</code></td><td>Full-screen dark overlay that centres the photo.</td></tr>
+              <tr><td><code>.lightbox-close</code></td><td>44 × 44 close button, top right.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Crop photos so the part to touch is in the middle.</li>
+              <li>Write an alt text for every photo, in Finnish.</li>
+              <li>Reuse one photo across steps through its key in <code>PHOTOS</code>.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Remove the AVAA bar; testers did not realise photos opened without it.</li>
+              <li>Put text you need to read only inside a photo.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>Each thumbnail is a button labelled "Avaa kuva N".</li>
+              <li>The lightbox is a dialog: it takes focus on its close button, keeps Tab inside and returns focus to the thumbnail that opened it.</li>
+              <li>Escape closes the lightbox. The focus ring turns white on the dark overlay.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="card ink text overlay border radius-sm space-4 space-8"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

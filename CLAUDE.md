@@ -69,6 +69,7 @@ v2 is reachable at `https://heidicode.github.io/Mokin-vedet/v2/` while
 | `v2/design-system/tokens.json` | The single source of truth for v2's tokens (W3C Design Tokens format) |
 | `v2/design-system/build-tokens.py` | Regenerates `tokens.css` from `tokens.json`; `--check` fails if stale |
 | `v2/design-system/DESIGN-SYSTEM.md` | **Read before any visual change to v2**: rules, components, do/don't |
+| `v2/design-system/*.html` | The browsable design system site (English), live at `/v2/design-system/`. Frame in `assets/ds.css` + `assets/ds.js`; app icons copied to `assets/icons.js` |
 
 - **Images are shared, not copied** — `v2/index.html` references `../images/`.
   Add a photo once, at the repo root, and both versions see it.
