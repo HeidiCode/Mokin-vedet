@@ -64,7 +64,7 @@ v2 is reachable at `https://heidicode.github.io/Mokin-vedet/v2/` while
 | Path | What it is |
 |---|---|
 | `v2/index.html` | Same app, single theme, no switcher |
-| `v2/themes/components.css` | The whole v2 look: components, referencing tokens only |
+| `v2/themes/stylesV2.css` | The whole v2 look: components, referencing tokens only |
 | `v2/themes/tokens.css` | **Generated** CSS custom properties. Never edit by hand |
 | `v2/design-system/tokens.json` | The single source of truth for v2's tokens (W3C Design Tokens format) |
 | `v2/design-system/build-tokens.py` | Regenerates `tokens.css` from `tokens.json`; `--check` fails if stale |

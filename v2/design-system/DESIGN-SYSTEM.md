@@ -9,7 +9,7 @@ before you add or change anything that is drawn on screen.
 |---|---|---|
 | Tokens (colour, type, shape, spacing) | `v2/design-system/tokens.json` | The **only** place a token value is written. W3C Design Tokens format. |
 | Tokens as CSS | `v2/themes/tokens.css` | **Generated.** Never edit. Run `python3 v2/design-system/build-tokens.py`; `--check` fails if it is stale. |
-| Components | `v2/themes/components.css` | Uses tokens only, through `var(--name)`. |
+| Components | `v2/themes/stylesV2.css` | Uses tokens only, through `var(--name)`. |
 | Markup and behaviour | `v2/index.html` | The renderer builds every component; class names below are the contract. |
 | Figma | not yet made | Will be derived from `tokens.json` (variables) and this file (components). Code wins if they disagree. |
 
@@ -23,8 +23,8 @@ The groups only organise. `{color.ink}` is an alias and becomes `var(--ink)`.
    script, commit both files.
 2. Adding a token: add it to the right group in `tokens.json` with a
    `$description` saying where it is used, run the script, then use it in
-   `components.css`.
-3. Changing a component: edit `components.css`, referencing tokens. If you need a
+   `stylesV2.css`.
+3. Changing a component: edit `stylesV2.css`, referencing tokens. If you need a
    number that is not a token, either reuse the nearest token or add one; do
    not write a raw value.
 4. Before a PR: screenshot home, a process mid-way, and the completion modal at
@@ -125,7 +125,7 @@ Target WCAG 2.1 AA, checked with axe-core.
 
 ## Known off-token values
 
-Raw values still written in `components.css`. Each is a candidate for a token, or
+Raw values still written in `stylesV2.css`. Each is a candidate for a token, or
 for snapping to an existing one; changing any of them is visible, so it needs
 a design decision first.
 
