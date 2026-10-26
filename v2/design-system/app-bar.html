@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App bar · Hana design system</title>
+<meta name="description" content="The app bar: the page title and, inside a process, a back button.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>App bar</h1>
+      <p class="ds-lead">The white bar across the top of every view. It holds the page title, which is the page's <code>&lt;h1&gt;</code>, and inside a process a back button to the home view.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Home">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <header class="app-bar">
+              <h1 class="app-bar__title" tabindex="-1">Mökin vedet</h1>
+            </header>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Inside a process">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <header class="app-bar">
+              <button class="icon-btn" aria-label="Takaisin"><i data-icon="arrowLeft"></i></button>
+              <h1 class="app-bar__title" tabindex="-1">Kesä — Palaaminen</h1>
+            </header>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.app-bar</code></td><td>64px white bar with a 2px ink rule along the bottom.</td></tr>
+              <tr><td><code>.app-bar__title</code></td><td>Centred heading in Space Grotesk at the heading size. Truncates with an ellipsis rather than wrapping.</td></tr>
+              <tr><td><code>.icon-btn</code></td><td>44 × 44 icon button pinned to the left. Hidden on the home view.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Use the process name as the title inside a process.</li>
+              <li>Keep the back button the only control in the bar.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Add actions or a menu to the bar; the app has one task per view.</li>
+              <li>Let a long title wrap to two lines; it truncates.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>The title is the page's only <code>&lt;h1&gt;</code>. It has <code>tabindex="-1"</code> so that opening a process can move focus to it; it is not a control and shows no focus ring.</li>
+              <li>The back button has <code>aria-label="Takaisin"</code> because it shows only an icon.</li>
+              <li>The button is 44 × 44px, the minimum touch target.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="appbar ink text border heading-size heading-weight font-head radius-sm"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

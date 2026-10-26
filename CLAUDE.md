@@ -64,7 +64,12 @@ v2 is reachable at `https://heidicode.github.io/Mokin-vedet/v2/` while
 | Path | What it is |
 |---|---|
 | `v2/index.html` | Same app, single theme, no switcher |
-| `v2/themes/metsa.css` | The whole v2 look. All tunables are tokens in `:root` |
+| `v2/themes/stylesV2.css` | The whole v2 look: components, referencing tokens only |
+| `v2/themes/tokens.css` | **Generated** CSS custom properties. Never edit by hand |
+| `v2/design-system/tokens.json` | The single source of truth for v2's tokens (W3C Design Tokens format) |
+| `v2/design-system/build-tokens.py` | Regenerates `tokens.css` from `tokens.json`; `--check` fails if stale |
+| `v2/design-system/DESIGN-SYSTEM.md` | **Read before any visual change to v2**: rules, components, do/don't |
+| `v2/design-system/*.html` | The browsable design system site (English), live at `/v2/design-system/`. Frame in `assets/ds.css` + `assets/ds.js`; app icons copied to `assets/icons.js` |
 
 - **Images are shared, not copied** — `v2/index.html` references `../images/`.
   Add a photo once, at the repo root, and both versions see it.
@@ -117,7 +122,7 @@ processes, lightbox and modal):
   `0/5` count is `aria-hidden` so it is not read twice. Home counts carry a
   `.sr-only` "vaihetta valmiina".
 - **Focus ring** is a 2px ink outline with a 2px gap (`:focus-visible` in
-  `metsa.css`), white in the lightbox, and drawn around the whole card for a
+  `stylesV2.css`), white in the lightbox, and drawn around the whole card for a
   done step's head. The browser default vanished against the 2px borders.
 - `document.title` follows the view.
 

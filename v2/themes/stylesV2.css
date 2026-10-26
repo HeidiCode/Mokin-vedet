@@ -1,4 +1,4 @@
-/* Mökin vedet v2 — "Metsä"
+/* Mökin vedet v2 — component styles of the Hana design system
    ---------------------------------------------------------------------------
    One theme, no switcher. Grew out of the user testing on v1: the five findings
    it answers are noted against the rules that answer them.
@@ -7,78 +7,13 @@
    it (from the Neobrutalismi round), softened — 2px borders instead of 3px, a
    10px radius instead of none, and one muted accent instead of the alarm red.
 
-   Everything tunable lives in :root. Change a token here and it moves
-   everywhere it is used; the components below only reference tokens.
+   Everything tunable is a token (see below); the components only reference
+   tokens. v2/design-system/DESIGN-SYSTEM.md is the guide to the whole system.
    ------------------------------------------------------------------------- */
 
-:root {
-  /* --- surfaces ------------------------------------------------------- */
-  --ground: #f3fbe7;        /* the page itself; cards float on this */
-  --card: #ffffff;          /* task cards, tool box, modal, home cards */
-  --appbar: #ffffff;        /* the top bar */
-  --done-bg: #e7f7cf;       /* a completed step recedes into a tint */
-  --locked-bg: #e7f7cf;     /* so does a step you have not reached */
-  --alert-bg: #fefed8;      /* Huomio */
-
-  /* --- ink ------------------------------------------------------------
-     `ink` is structure — every border, every drop shadow, the progress fill,
-     the bar across a photo. `text` is what you read, and currently follows it.
-     To pull them apart again, give `--text` its own hex. */
-  --ink: #0f111e;
-  --text: var(--ink);
-
-  /* `muted` is the locked step's title and number; `locked-line` is the dashed
-     border around that card. Same story — one value, two names. */
-  --muted: #4a5a36;
-  --locked-line: var(--muted);
-
-  /* The padlock is filled, so at --muted it would out-weigh the text beside it.
-     Lighter green, still a legible mark. #6d8a52 is the lightest that clears
-     3:1 against the locked card; below that it stops reading. */
-  --lock: #5f7d46;
-
-  /* --- accent ---------------------------------------------------------
-     `accent` is a FILL and always carries dark text on top, so a bright value
-     is the safe direction. `accent-ink` is the darker sibling for small
-     uppercase labels, which need more contrast than a fill does. They do not
-     follow each other — check both if you retint. */
-  --accent: #dfe1ff;
-  --accent-ink: #467a26;
-
-  --overlay: rgba(10, 11, 20, 0.85);
-
-  /* --- type -----------------------------------------------------------
-     Finding 4: v1 was 15–16px and testers wanted bigger. Body is 17px and the
-     phase heading 25px, up from 18px. Line-heights are unitless so they scale
-     with the sizes. */
-  --font-head: "Space Grotesk", "Manrope", Helvetica, Arial, sans-serif;
-  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-
-  --heading-size: 25px;
-  --heading-weight: 600;
-  --title-size: 19px;         /* task card titles */
-  --title-weight: 600;
-  --title-weight-current: 600;
-  --body-size: 17px;
-  --label-size: 14px;         /* VAIHE 1, OHJEET, TYÖKALUT, the Huomio tab */
-  --btn-size: 19px;
-  --btn-weight: 600;
-
-  /* --- shape ----------------------------------------------------------- */
-  --radius: 10px;
-  --radius-sm: 8px;
-  --radius-pill: 999px;
-  --border: 2px;
-  --shadow-offset: 3px;
-
-  --space-4: 4px;
-  --space-8: 8px;
-  --space-16: 16px;
-  --space-24: 24px;
-  --space-32: 32px;
-  --space-40: 40px;
-  --space-64: 64px;
-}
+/* The tokens — colours, type, shape, spacing — live in tokens.css, which is
+   generated from v2/design-system/tokens.json and loaded before this file.
+   Change a token there and it moves everywhere it is used. */
 
 * { box-sizing: border-box; }
 

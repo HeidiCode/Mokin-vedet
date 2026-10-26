@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primary button · Hana design system</title>
+<meta name="description" content="The primary button: the one action on screen, such as Merkitse valmiiksi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Primary button</h1>
+      <p class="ds-lead">The one action on screen. It is full width, filled with the accent, and casts a hard shadow that it presses into when tapped. It appears on the current step and in the completion modal.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Step action">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="step-actions">
+              <button type="button" class="btn-complete">Merkitse valmiiksi</button>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Modal action">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <button class="modal__btn" type="button">Selvä, sulje ohje</button>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.btn-complete</code></td><td>Full-width accent button on the current step, inside <code>.step-actions</code>.</td></tr>
+              <tr><td><code>.modal__btn</code></td><td>The same button inside the completion modal.</td></tr>
+              <tr><td><code>:active</code></td><td>Moves 3px down and right into its shadow, which disappears.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Write the action out as a verb: Merkitse valmiiksi.</li>
+              <li>Use one primary button per view.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Use an icon on its own; testers did not understand the icon-only modal button.</li>
+              <li>Put two primary buttons side by side.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>It is a real <code>&lt;button type="button"&gt;</code>.</li>
+              <li>The press animation is switched off under reduced motion.</li>
+              <li>Dark text on the accent fill passes 4.5:1.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="accent ink text border radius shadow-offset space-16 btn-size btn-weight font-head"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

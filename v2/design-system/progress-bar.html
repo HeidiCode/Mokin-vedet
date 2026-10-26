@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progress bar · Hana design system</title>
+<meta name="description" content="The progress bar: steps done out of total, pinned to the top of a process.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Progress bar</h1>
+      <p class="ds-lead">Shows how far through a process you are. It sticks to the top of the screen while the steps scroll beneath it, full width and on the page colour.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Under way">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="progress">
+              <span class="progress__count" aria-hidden="true">3/12</span>
+              <div class="progress__track" role="progressbar" aria-label="Edistyminen" aria-valuemin="0" aria-valuemax="12" aria-valuenow="3" aria-valuetext="3/12 vaihetta valmiina"><div class="progress__fill" style="width:25%"></div></div>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Done">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="progress is-complete">
+              <span class="progress__count" aria-hidden="true">12/12</span>
+              <div class="progress__track" role="progressbar" aria-label="Edistyminen" aria-valuemin="0" aria-valuemax="12" aria-valuenow="12" aria-valuetext="12/12 vaihetta valmiina"><div class="progress__fill" style="width:100%"></div></div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.progress</code></td><td>Sticky row at the top of a process, full bleed, ground-coloured, with a 2px ink rule below.</td></tr>
+              <tr><td><code>.progress__count</code></td><td>Accent counter, <code>done/total</code>, fixed width.</td></tr>
+              <tr><td><code>.progress__track</code></td><td>14px white track with a 2px ink border.</td></tr>
+              <tr><td><code>.progress__fill</code></td><td>Ink fill. Its width is set by script as a percentage.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Update it every time a step is marked done or rewound.</li>
+              <li>Keep the count and the bar in step: both come from the same number.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Show a percentage; steps are what people count.</li>
+              <li>Animate it when the user prefers reduced motion.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>The track is a <code>role="progressbar"</code> with its value as text, "3/12 vaihetta valmiina". The visible count is <code>aria-hidden</code> so it is not read twice.</li>
+              <li>When a step is marked done, a hidden live region says so: "Vaihe 3 valmis. 3/12."</li>
+              <li>In Windows high-contrast mode the fill switches to the system text colour so the bar does not go empty.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="ground card ink accent border radius-sm space-8 space-16 space-24 label-size"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

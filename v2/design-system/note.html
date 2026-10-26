@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note (Huomio) · Hana design system</title>
+<meta name="description" content="The Huomio note: a calm warning inside a step, with its label riding the top border.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Note (Huomio)</h1>
+      <p class="ds-lead">A warning inside a step: something that must not be missed, such as not powering a dry boiler. It is a note to read, not an alarm. The label rides the top border as a tab.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="In a step">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="alert-box">
+              <i data-icon="warning"></i>
+              <div>
+                <p class="alert-box__title">Huomio</p>
+                <p class="alert-box__text">Kytke virta vasta kun olet varmistanut että vesi tulee. Kuiva boileri ei saa olla virrallinen.</p>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.alert-box</code></td><td>Pale yellow box with a 2px ink border and extra top padding for the tab.</td></tr>
+              <tr><td><code>.alert-box__title</code></td><td>The Huomio tab, centred on the top border. White uppercase text on <code>--accent-ink</code>.</td></tr>
+              <tr><td><code>.alert-box__text</code></td><td>The warning, as body text.</td></tr>
+              <tr><td><code>.icon</code></td><td>Warning glyph, kept in the markup but hidden; the tab already says it.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Say what to do and why, in one or two sentences.</li>
+              <li>Place it after the instructions it qualifies.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Use red, or style it as an error.</li>
+              <li>Use more than one note in a step.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>The label is real text, so "Huomio" is read before the warning.</li>
+              <li>White on <code>--accent-ink</code> clears 4.5:1.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="alert-bg accent-ink ink text card border radius space-16 space-24 space-4 space-8 label-size body-size"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

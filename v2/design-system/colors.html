@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colour · Hana design system</title>
+<meta name="description" content="Hana's colour tokens: a pale green ground, white cards, ink for structure and one soft accent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Foundations</p>
+      <h1>Colour</h1>
+      <p class="ds-lead">A pale green page with white cards floating on it, ink for every line, and one soft lavender accent for the thing to press. There is no red: nothing in this app is an error.</p>
+
+      <section>
+        <h2>Surfaces</h2>
+        <p>The ground is the page. Cards sit on it in white. A step that is done, or not reached yet, recedes into a green tint so the current white card stands out.</p>
+        <div class="ds-swatches" data-ds="colors" data-names="ground card appbar done-bg locked-bg alert-bg"></div>
+      </section>
+
+      <section>
+        <h2>Ink and text</h2>
+        <p><code>--ink</code> is structure: borders, shadows, the progress fill. <code>--text</code> is what you read. Today they are the same colour under two names, so either can move without the other.</p>
+        <div class="ds-swatches" data-ds="colors" data-names="ink text muted locked-line lock"></div>
+      </section>
+
+      <section>
+        <h2>Accent</h2>
+        <p>Two accents that do not follow each other. <code>--accent</code> is a fill that always has dark text on top. <code>--accent-ink</code> is a text colour for small uppercase labels, which need more contrast than a fill.</p>
+        <div class="ds-swatches" data-ds="colors" data-names="accent accent-ink overlay"></div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Use a token for every colour: <code>var(--card)</code>, never <code>#ffffff</code>.</li>
+              <li>Show state with background, shadow and badge together.</li>
+              <li>Put dark text on <code>--accent</code>; use <code>--accent-ink</code> for labels.</li>
+              <li>Check contrast on the <a href="accessibility.html">accessibility page</a> after any retint.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Dim anything with <code>opacity</code>. It drops text below 4.5:1.</li>
+              <li>Add red or other alarm colours for warnings.</li>
+              <li>Use <code>--accent</code> as a text colour.</li>
+              <li>Let colour be the only thing that tells two states apart.</li>
+            </ul>
+          </div>
+        </div>
+        <p>Click a swatch to copy its <code>var()</code>.</p>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

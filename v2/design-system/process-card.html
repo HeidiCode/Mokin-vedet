@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Process card · Hana design system</title>
+<meta name="description" content="The home view's process card: one card per guide, with a step counter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Component</p>
+      <h1>Process card</h1>
+      <p class="ds-lead">One card per guide on the home view. The whole card is a button that opens the process, and its counter shows how many steps are done.</p>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="ds-example" data-title="Not started">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="card-list">
+              <button class="card-project">
+                <span class="card-project__title">Kesä — Palaaminen</span>
+                <span class="card-project__count">0/5<span class="sr-only"> vaihetta valmiina</span></span>
+                <i data-icon="chevronRight"></i>
+              </button>
+            </div>
+          </div></div>
+        </div>
+        <div class="ds-example" data-title="Complete">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <div class="card-list">
+              <button class="card-project">
+                <span class="card-project__title">Kesä — Poistuminen</span>
+                <span class="card-project__count is-complete">12/12<span class="sr-only"> vaihetta valmiina</span></span>
+                <i data-icon="chevronRight"></i>
+              </button>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anatomy</h2>
+        <div class="ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>Class</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>.card-list</code></td><td>Vertical stack of cards, 16px apart.</td></tr>
+              <tr><td><code>.card-project</code></td><td>The card and the button. White, 2px ink border, 3px ink shadow; presses into its shadow on <code>:active</code>.</td></tr>
+              <tr><td><code>.card-project__title</code></td><td>Process name in Space Grotesk at the title size.</td></tr>
+              <tr><td><code>.card-project__count</code></td><td>Fixed-width counter, <code>done/total</code>, in tabular figures.</td></tr>
+              <tr><td><code>.is-complete</code></td><td>Fills the counter with the accent when every step is done.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Best practices</h2>
+        <div class="ds-dodont">
+          <div class="ds-do">
+            <h3><span class="ds-mark"><i data-icon="check"></i></span>Do</h3>
+            <ul>
+              <li>Name the process by season and direction: Kesä — Palaaminen.</li>
+              <li>Keep the whole card one button.</li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h3><span class="ds-mark"><i data-icon="close"></i></span>Don't</h3>
+            <ul>
+              <li>Put a second button or a link inside the card.</li>
+              <li>Let the counter's width follow the digits; it would land on half pixels.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <ul class="ds-list">
+              <li>It is a real <code>&lt;button&gt;</code>, so it works with keyboard and screen readers.</li>
+              <li>The counter is read as part of the button's name. A hidden "vaihetta valmiina" makes it "Kesä — Palaaminen 0/5 vaihetta valmiina".</li>
+              <li>Coming back from a process, focus returns to the card you opened.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tokens</h2>
+        <p>Click a token to copy its <code>var()</code>.</p>
+        <ul class="ds-tokens" data-tokens="card ink text accent border radius radius-sm shadow-offset space-16 space-8 space-4 title-size title-weight label-size"></ul>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>

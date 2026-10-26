@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility · Hana design system</title>
+<meta name="description" content="How Hana meets WCAG 2.1 AA: live contrast ratios, focus, overlays and motion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- The app's own CSS first, so every preview is the real component. -->
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/stylesV2.css">
+<link rel="stylesheet" href="assets/ds.css">
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<header class="ds-top" id="ds-top"></header>
+<div class="ds-layout">
+  <aside class="ds-side" id="ds-side"></aside>
+  <main class="ds-main" id="main">
+    <article class="ds-doc">
+      <p class="ds-eyebrow">Foundations</p>
+      <h1>Accessibility</h1>
+      <p class="ds-lead">Hana targets WCAG 2.1 AA and is checked with axe-core. The ratios below are computed in your browser from the live tokens, so a retint that breaks one shows up here straight away.</p>
+
+      <section>
+        <h2>Contrast</h2>
+        <p>Text needs 4.5:1. A boundary that is the only outline of something, like the locked card's dashed border, needs 3:1, and so does an icon that carries meaning.</p>
+        <div class="ds-table-wrap" data-ds="contrast"></div>
+      </section>
+
+      <section>
+        <h2>Never dim with opacity</h2>
+        <p>Opacity lowers contrast unpredictably and almost always pushes text below 4.5:1. A muted element gets an explicit colour token instead: the locked step uses <code>--muted</code> on <code>--locked-bg</code>.</p>
+      </section>
+
+      <section>
+        <h2>Focus</h2>
+        <p>Keyboard focus is a 2px <code>--ink</code> ring with a 2px gap, so it reads on every surface. Inside the lightbox the ring is white. A done step's whole card is ringed, not just its head.</p>
+        <div class="ds-example" data-title="Focus ring">
+          <div class="ds-preview"><div class="ds-preview__inner" lang="fi">
+            <button type="button" class="btn-complete" style="outline:var(--border) solid var(--ink);outline-offset:var(--border)">Merkitse valmiiksi</button>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Checklist</h2>
+        <ul class="ds-list">
+          <li><strong>Language.</strong> <code>&lt;html lang="fi"&gt;</code> in the app.</li>
+          <li><strong>Headings.</strong> The page title is the <code>&lt;h1&gt;</code>; phase labels are <code>&lt;h2&gt;</code>.</li>
+          <li><strong>State in words.</strong> The words Valmis and Kesken are hidden visually with <code>.sr-only</code> but still read out. The padlock has <code>aria-label="Lukittu"</code>.</li>
+          <li><strong>Photos.</strong> Each thumbnail button has a numbered label, "Avaa kuva 1", and its image an alt text.</li>
+          <li><strong>Focus is never lost.</strong> A re-render throws away the button that was pressed, so the script hands focus on: opening a process moves it to the page title, marking a step done or rewinding moves it to the new current step, and going back moves it to the card you came from.</li>
+        <li><strong>Changes are announced.</strong> A hidden <code>role="status"</code> region says what a tap did, for example "Vaihe 2 valmis. 2/5."</li>
+        <li><strong>Overlays.</strong> The lightbox and the modal are <code>role="dialog"</code> with <code>aria-modal</code>; they take focus when they open, keep Tab inside, and give focus back when they close.</li>
+          <li><strong>Touch targets.</strong> At least 44 × 44px.</li>
+          <li><strong>Zoom.</strong> The viewport must not set <code>maximum-scale</code>.</li>
+          <li><strong>Motion.</strong> Transitions and smooth scrolling are switched off under <code>prefers-reduced-motion</code>.</li>
+        </ul>
+        <p>Re-run axe-core against the home view, a process and the completion modal after any visual change.</p>
+      </section>
+    </article>
+  </main>
+</div>
+<script src="assets/icons.js"></script>
+<script src="assets/ds.js"></script>
+</body>
+</html>
