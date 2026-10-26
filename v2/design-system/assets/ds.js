@@ -139,8 +139,8 @@
       pager.className = "ds-pager";
       pager.setAttribute("aria-label", "Previous and next page");
       pager.innerHTML =
-        (prev ? `<a class="ds-card ds-prev" href="${prev[0]}">${icons.arrowLeft || ""}<span><small>Previous</small>${prev[1]}</span></a>` : "") +
-        (next ? `<a class="ds-card ds-next" href="${next[0]}"><span><small>Next</small>${next[1]}</span>${icons.arrowLeft || ""}</a>` : "");
+        (prev ? `<a class="ds-card ds-prev" href="${prev[0]}"><small>Previous</small><span class="ds-pager__name">${icons.arrowLeft || ""}${prev[1]}</span></a>` : "") +
+        (next ? `<a class="ds-card ds-next" href="${next[0]}"><small>Next</small><span class="ds-pager__name">${next[1]}${icons.arrowLeft || ""}</span></a>` : "");
       doc.appendChild(pager);
     }
     const foot = document.createElement("footer");
