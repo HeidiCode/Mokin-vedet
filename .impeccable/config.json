@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-11-04T08:34:33.363Z",
+        "reason": "Heidi: Space Grotesk on Hanan tietoinen otsikkofontti"
+      }
+    ]
+  }
+}

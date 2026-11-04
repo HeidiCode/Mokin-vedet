@@ -7,3 +7,7 @@
 
 # Original full-size photos (optimized .jpg versions are committed)
 images/*.png
+
+# Impeccable (design plugin): live-mode session state and per-developer overrides
+.impeccable/live/
+.impeccable/config.local.json
