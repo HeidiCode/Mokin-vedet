@@ -174,6 +174,20 @@ then `axe.run(document).then(r => console.log(r.violations))`. Check **both**
 themes (swap the `#theme-stylesheet` href) and the project + modal views, not just
 home.
 
+## Impeccable design plugin
+
+The Impeccable plugin (`pbakaus/impeccable`) is enabled for **this repo only**, in
+`.claude/settings.json` (marketplace + `enabledPlugins`). Claude Code asks once to
+install it when you trust the folder. It loads its skill on any UI task and runs its
+design detector after each edit to an HTML/CSS/JS file, plus a deeper pass at the end of
+a turn. It never edits files by itself.
+
+- Detector exceptions live in `.impeccable/config.json` (shared). Space Grotesk is
+  ignored for `overused-font`: it is Hana's chosen heading face.
+- Its taste rules do not override this project's own: 8px spacing, 2px borders, whole
+  pixels, WCAG 2.1 AA, and `v2/design-system/DESIGN-SYSTEM.md` win.
+- Turn the per-edit hook off with `/impeccable hooks off`.
+
 ## Preview locally
 
 ```bash
